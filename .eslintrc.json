@@ -28,6 +28,7 @@
             }
         ],
         "import/no-unresolved": "off",
-        "import/no-extraneous-dependencies": "off"
+        "import/no-extraneous-dependencies": "off",
+        "linebreak-style": "off"
     }
 }
