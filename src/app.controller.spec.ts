@@ -15,8 +15,8 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('should return "Backend Projeto Special de Pé!!! \u{1F601}"', () => {
+      expect(appController.getHello()).toBe('Backend Projeto Special de Pé!!! \u{1F601}');
     });
   });
 });
