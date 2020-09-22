@@ -15,30 +15,25 @@ export class User extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ nullable: false, type: 'varchar', length: 100 })
+  @Column({ length: 100 })
   email: string;
 
-  @Column({ nullable: false, type: 'varchar', length: 100 })
+  @Column({ length: 100 })
   name: string;
 
-  @Column({
-    type: 'enum',
-    enum: UserRole,
-    array: true,
-    default: [UserRole.SUPERVISOR],
-  })
-  roles: UserRole[];
+  @Column({ type: 'enum', enum: UserRole })
+  role: UserRole;
 
-  @Column({ nullable: false, default: true })
+  @Column({ default: true })
   active: boolean;
 
-  @Column({ nullable: false })
+  @Column({ length: 100 })
   password: string;
 
-  @Column({ nullable: false })
+  @Column({ length: 100 })
   salt: string;
 
-  @Column({ nullable: true, type: 'varchar', length: 64 })
+  @Column({ nullable: true, length: 64 })
   recoverToken: string;
 
   @CreateDateColumn()
