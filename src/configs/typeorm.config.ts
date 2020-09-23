@@ -9,4 +9,5 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   database: 'special',
   entities: [`${__dirname}/../**/*.entity.{js,ts}`],
   synchronize: true,
+  logging: true,
 };
