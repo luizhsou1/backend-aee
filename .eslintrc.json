@@ -35,6 +35,7 @@
         "consistent-return": "off",
         "class-methods-use-this": "off",
         "import/extensions": "off",
-        "no-return-await": "off"
+        "no-return-await": "off",
+        "no-param-reassign": "off"
     }
 }
