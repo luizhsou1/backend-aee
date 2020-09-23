@@ -5,12 +5,12 @@ services:
     image: postgres:12-alpine
     ports:
       - "5433:5432"
-    container_name: "postgres"
+    container_name: "postgres-special"
     restart: always
     volumes:
       - pgdata:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: backend_special
+      POSTGRES_USER: special
       POSTGRES_PASSWORD: 123
 
 volumes:

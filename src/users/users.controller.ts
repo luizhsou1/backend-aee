@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, ValidationPipe } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { ReturnUserDto } from './dtos/return-user.dto';
 import { UserRole } from './user-roles.enum';
@@ -10,7 +10,7 @@ export class UsersController {
 
   @Post()
   async createAdminUser(
-    @Body() createUserDto: CreateUserDto,
+    @Body(ValidationPipe) createUserDto: CreateUserDto,
   ): Promise<ReturnUserDto> {
     const user = await this.usersService.createUser(createUserDto);
     const role = this.convertRoleToPortuguese(createUserDto.role);
