@@ -3,6 +3,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from 'src/modules/users/get-user.decorator';
 import { User } from 'src/modules/users/user.entity';
 import { Auth } from 'src/shared/custom-decorators/auth.decorator';
+import { UserRole } from '../users/user-roles.enum';
 import { AuthService } from './auth.service';
 import { CredentialsDto } from './dtos/credentials.dto';
 
