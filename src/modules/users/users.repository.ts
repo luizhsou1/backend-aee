@@ -1,7 +1,7 @@
 import { EntityRepository, Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { handleErrors } from 'src/shared/utils/errors-helper';
-import { CredentialsDto } from 'src/auth/dtos/credentials.dto';
+import { CredentialsDto } from 'src/modules/auth/dtos/credentials.dto';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UserRole } from './user-roles.enum';
 import { User } from './user.entity';
