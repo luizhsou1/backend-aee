@@ -3,7 +3,6 @@ import * as bcrypt from 'bcrypt';
 import { handleErrors } from 'src/shared/utils/errors-helper';
 import { CredentialsDto } from 'src/modules/auth/dtos/credentials.dto';
 import { createQueryPaginationTypeorm } from 'src/shared/utils/query-pagination-typeorm';
-import { isNullOrUndefined } from 'util';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { User } from './user.entity';
 import { FindUsersQueryDto } from './dtos/find-users-query.dto';
