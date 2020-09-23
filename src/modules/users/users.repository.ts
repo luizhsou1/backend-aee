@@ -1,6 +1,7 @@
 import { EntityRepository, Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { handleErrors } from 'src/shared/utils/errors-helper';
+import { CredentialsDto } from 'src/auth/dtos/credentials.dto';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UserRole } from './user-roles.enum';
 import { User } from './user.entity';
@@ -25,5 +26,15 @@ export class UserRepo extends Repository<User> {
     } catch (error) {
       handleErrors(error, 'Erro ao salvar usuário');
     }
+  }
+
+  async checkCredentials(credentialsDto: CredentialsDto): Promise<User> {
+    const { email, password } = credentialsDto;
+    const user = await this.findOne({ email, active: true });
+
+    if (user && (await user.checkPassword(password))) {
+      return user;
+    }
+    return null;
   }
 }
