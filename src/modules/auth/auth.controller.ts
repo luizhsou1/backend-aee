@@ -2,6 +2,7 @@ import { Body, Controller, Get, Post, Req, UseGuards, ValidationPipe } from '@ne
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from 'src/modules/users/get-user.decorator';
 import { User } from 'src/modules/users/user.entity';
+import { Auth } from 'src/shared/custom-decorators/auth.decorator';
 import { AuthService } from './auth.service';
 import { CredentialsDto } from './dtos/credentials.dto';
 
@@ -17,7 +18,7 @@ export class AuthController {
   }
 
   @Get('/me')
-  @UseGuards(AuthGuard())
+  @Auth()
   getMe(@GetUser() user: User): User {
     return user;
   }

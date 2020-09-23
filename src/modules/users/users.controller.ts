@@ -2,6 +2,7 @@ import { Body, Controller, Post, UseGuards, ValidationPipe } from '@nestjs/commo
 import { AuthGuard } from '@nestjs/passport';
 import { Roles } from 'src/modules/auth/role.decorator';
 import { RolesGuard } from 'src/modules/auth/roles.guard';
+import { Auth } from 'src/shared/custom-decorators/auth.decorator';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { ReturnUserDto } from './dtos/return-user.dto';
 import { UserRole } from './user-roles.enum';
@@ -12,8 +13,7 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
   @Post()
-  @Roles(UserRole.ADMIN, UserRole.SUPERVISOR)
-  @UseGuards(AuthGuard(), RolesGuard)
+  @Auth(UserRole.ADMIN, UserRole.SUPERVISOR)
   async createAdminUser(
     @Body(ValidationPipe) createUserDto: CreateUserDto,
   ): Promise<ReturnUserDto> {
