@@ -30,7 +30,13 @@ export class UserRepo extends Repository<User> {
 
   async checkCredentials(credentialsDto: CredentialsDto): Promise<User> {
     const { email, password } = credentialsDto;
-    const user = await this.findOne({ email, active: true });
+
+    const user = await this.createQueryBuilder('u')
+      .addSelect('u.password')
+      .addSelect('u.salt')
+      .where('u.active = :active', { active: true })
+      .andWhere('u.email = :email', { email })
+      .getOne();
 
     if (user && (await user.checkPassword(password))) {
       return user;

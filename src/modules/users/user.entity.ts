@@ -28,10 +28,10 @@ export class User extends BaseEntity {
   @Column({ default: true })
   active: boolean;
 
-  @Column({ length: 100 })
+  @Column({ length: 100, select: false })
   password: string;
 
-  @Column({ length: 100 })
+  @Column({ length: 100, select: false })
   salt: string;
 
   @Column({ nullable: true, length: 64 })

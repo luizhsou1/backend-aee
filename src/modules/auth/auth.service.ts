@@ -3,6 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserRepo } from 'src/modules/users/users.repository';
 import { CredentialsDto } from './dtos/credentials.dto';
+import { ReturnSigninDto } from './dtos/return-signin.dto';
 
 @Injectable()
 export class AuthService {
@@ -12,7 +13,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) { }
 
-  async signIn(credentialsDto: CredentialsDto) {
+  async signIn(credentialsDto: CredentialsDto): Promise<ReturnSigninDto> {
     const user = await this.userRepo.checkCredentials(credentialsDto);
 
     if (user === null) {
@@ -24,6 +25,8 @@ export class AuthService {
     };
     const token = await this.jwtService.sign(jwtPayload);
 
-    return { token };
+    delete user.password;
+    delete user.salt;
+    return { token, user };
   }
 }
