@@ -1,48 +1,19 @@
-import {
-  IsEmail,
-  IsEnum,
-  IsNotEmpty,
-  MaxLength,
-  MinLength,
-} from 'class-validator';
 import { UserRole } from '../user-roles.enum';
+import { IsUserEmail, IsUserName, IsUserRole, IsUserPassword, IsUserPasswordConfirmation } from '../validations';
 
 export class CreateUserDto {
-  @IsEmail(
-    {},
-    {
-      message: 'Informe um endereço de email válido',
-    },
-  )
-  @MaxLength(200, {
-    message: 'O endereço de email deve ter menos de 200 caracteres',
-  })
+  @IsUserEmail()
   email: string;
 
-  @IsNotEmpty({
-    message: 'Informe o nome do usuário',
-  })
-  @MaxLength(200, {
-    message: 'O nome deve ter menos de 200 caracteres',
-  })
+  @IsUserName()
   name: string;
 
-  @IsEnum(UserRole, { message: `Informe um dos papéis a seguir: [${UserRole.ADMIN}, ${UserRole.SUPERVISOR}, ${UserRole.TEACHER}]` })
+  @IsUserRole()
   role: UserRole;
 
-  @IsNotEmpty({
-    message: 'Informe uma senha',
-  })
-  @MinLength(6, {
-    message: 'A senha deve ter no mínimo 6 caracteres',
-  })
+  @IsUserPassword()
   password: string;
 
-  @IsNotEmpty({
-    message: 'Informe a confirmação de senha',
-  })
-  @MinLength(6, {
-    message: 'A confirmação de senha deve ter no mínimo 6 caracteres',
-  })
+  @IsUserPasswordConfirmation()
   passwordConfirmation: string;
 }
