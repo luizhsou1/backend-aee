@@ -3,15 +3,15 @@ import { IsUserEmail, IsUserName, IsUserRole } from '../validations';
 import { IsUserActive } from '../validations/user-active.decorator';
 
 export class UpdateUserDto {
-  @IsUserEmail(true)
+  @IsUserEmail(false)
   email: string;
 
-  @IsUserName(true)
+  @IsUserName(false)
   name: string;
 
-  @IsUserRole(true)
+  @IsUserRole(false)
   role: UserRole;
 
-  @IsUserActive(true)
+  @IsUserActive(false)
   active: boolean;
 }

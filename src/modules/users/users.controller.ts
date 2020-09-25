@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards, ValidationPipe } from '@nestjs/common';
+import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { Auth } from 'src/shared/custom-decorators/auth.decorator';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { FindUsersQueryDto } from './dtos/find-users-query.dto';
@@ -7,6 +8,7 @@ import { UpdateUserDto } from './dtos/update-user.dto';
 import { UserRole } from './user-roles.enum';
 import { UsersService } from './users.service';
 
+@ApiTags('users')
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
