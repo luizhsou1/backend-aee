@@ -1,6 +1,6 @@
 import { applyDecorators } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsOptional, MaxLength } from 'class-validator';
+import { IsOptional, MaxLength } from 'class-validator';
 
 export function IsUserName(required = true) {
   const MAX_CHARACTERS = 100;

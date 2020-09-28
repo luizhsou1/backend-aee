@@ -1,6 +1,6 @@
 import { applyDecorators } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEnum, IsNotEmpty, IsOptional } from 'class-validator';
+import { IsEnum, IsOptional } from 'class-validator';
 import { UserRole } from '../user-roles.enum';
 
 export function IsUserRole(required = true) {

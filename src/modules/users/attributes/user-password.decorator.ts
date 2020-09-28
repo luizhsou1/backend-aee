@@ -1,6 +1,6 @@
 import { applyDecorators } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsOptional, MinLength } from 'class-validator';
+import { IsOptional, MinLength } from 'class-validator';
 
 export function IsUserPassword(required = true) {
   return applyDecorators(

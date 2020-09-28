@@ -1,6 +1,6 @@
 import { applyDecorators } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsNotEmpty, IsOptional, MaxLength } from 'class-validator';
+import { IsEmail, IsOptional, MaxLength } from 'class-validator';
 
 export function IsUserEmail(required = true) {
   const MAX_CHARACTERS = 100;
