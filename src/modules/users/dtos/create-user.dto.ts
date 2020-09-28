@@ -1,5 +1,5 @@
 import { UserRole } from '../user-roles.enum';
-import { IsUserEmail, IsUserName, IsUserRole, IsUserPassword, IsUserPasswordConfirmation } from '../validations';
+import { IsUserEmail, IsUserName, IsUserRole, IsUserPassword, IsUserPasswordConfirmation } from '../attributes';
 
 export class CreateUserDto {
   @IsUserEmail()

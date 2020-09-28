@@ -1,4 +1,4 @@
-import { IsUserEmail, IsUserPassword } from 'src/modules/users/validations';
+import { IsUserEmail, IsUserPassword } from 'src/modules/users/attributes';
 
 export class CredentialsDto {
   @IsUserEmail()

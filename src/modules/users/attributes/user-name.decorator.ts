@@ -6,7 +6,6 @@ export function IsUserName(required = true) {
   const MAX_CHARACTERS = 100;
   return applyDecorators(
     ApiProperty({ required }),
-    required ? IsNotEmpty({ message: 'Informe um nome de usuário' }) : IsOptional(),
-    MaxLength(MAX_CHARACTERS, { message: `O nome do usuário deve ter no máximo ${MAX_CHARACTERS} caracteres` }),
+    required ? MaxLength(MAX_CHARACTERS, { message: `O nome do usuário deve ter no máximo ${MAX_CHARACTERS} caracteres` }) : IsOptional(),
   );
 }
