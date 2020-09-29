@@ -11,6 +11,7 @@ import { winstonConfig } from './core/configs/winston.config';
 import { LoggerInterceptor } from './core/interceptors/logger.interceptor';
 import { AuthModule } from './modules/auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
+import { SchoolsModule } from './modules/schools/schools.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { UsersModule } from './modules/users/users.module';
     MailerModule.forRoot(mailerConfig),
     UsersModule,
     AuthModule,
+    SchoolsModule,
   ],
   controllers: [AppController],
   providers: [
