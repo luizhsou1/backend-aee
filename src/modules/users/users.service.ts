@@ -18,7 +18,7 @@ export class UsersService {
     if (createUserDto.password !== createUserDto.passwordConfirmation) {
       throw new UnprocessableEntityException('As senhas não conferem');
     } else {
-      return this.userRepo.createUser(createUserDto);
+      return await this.userRepo.createUser(createUserDto);
     }
   }
 
