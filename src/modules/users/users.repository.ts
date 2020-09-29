@@ -50,7 +50,7 @@ export class UserRepo extends Repository<User> {
     user.email = email;
     user.name = name;
     user.salt = await bcrypt.genSalt();
-    user.password = await bcrypt.hash(password, user.salt);
+    user.password = await this.hashPassword(password, user.salt);
     user.role = role;
 
     try {
@@ -61,6 +61,14 @@ export class UserRepo extends Repository<User> {
     } catch (error) {
       handleErrors(error, 'Erro ao salvar usuário');
     }
+  }
+
+  async changePassword(id: string, password: string) {
+    const user = await this.findOne(id);
+    user.salt = await bcrypt.genSalt();
+    user.password = await this.hashPassword(password, user.salt);
+    user.recoverToken = null;
+    await user.save();
   }
 
   async checkCredentials(credentialsDto: CredentialsDto): Promise<User> {
@@ -77,5 +85,9 @@ export class UserRepo extends Repository<User> {
       return user;
     }
     return null;
+  }
+
+  private async hashPassword(password: string, salt: string): Promise<string> {
+    return bcrypt.hash(password, salt);
   }
 }
