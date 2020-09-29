@@ -15,7 +15,7 @@ export class UsersController {
 
   @Post()
   @Auth(UserRole.ADMIN, UserRole.SUPERVISOR)
-  async createAdminUser(
+  async createUser(
     @Body(ValidationPipe) createUserDto: CreateUserDto,
   ): Promise<ReturnUserDto> {
     const user = await this.usersService.createUser(createUserDto);
