@@ -14,6 +14,7 @@ import { UsersModule } from './modules/users/users.module';
 import { SchoolsModule } from './modules/schools/schools.module';
 import { AdressesModule } from './modules/adresses/adresses.module';
 import { PhonesModule } from './modules/phones/phones.module';
+import { DeficienciesModule } from './modules/deficiencies/deficiencies.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { PhonesModule } from './modules/phones/phones.module';
     SchoolsModule,
     AdressesModule,
     PhonesModule,
+    DeficienciesModule,
   ],
   controllers: [AppController],
   providers: [
