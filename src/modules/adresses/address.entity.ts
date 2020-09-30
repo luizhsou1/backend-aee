@@ -13,6 +13,12 @@ export class Address extends BaseEntity {
   cep: string;
 
   @Column({ length: 100 })
+  city: string;
+
+  @Column({ length: 100 })
+  uf: string;
+
+  @Column({ length: 100 })
   neighborhood: string;
 
   @Column({ length: 100 })

@@ -7,6 +7,6 @@ export function IsUserEmail(required = true) {
   return applyDecorators(
     ApiProperty({ required }),
     required ? IsEmail({}, { message: 'Informe um endereço de email válido' }) : IsOptional(),
-    MaxLength(MAX_CHARACTERS, { message: `O endereço de email deve ter no máximo ${MAX_CHARACTERS} caracteres` }),
+    MaxLength(MAX_CHARACTERS, { message: `Informe um endereço de email com no máximo ${MAX_CHARACTERS} caracteres` }),
   );
 }

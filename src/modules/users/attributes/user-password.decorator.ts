@@ -5,6 +5,6 @@ import { IsOptional, MinLength } from 'class-validator';
 export function IsUserPassword(required = true) {
   return applyDecorators(
     ApiProperty({ required }),
-    required ? MinLength(6, { message: 'A senha deve ter no mínimo 6 caracteres' }) : IsOptional(),
+    required ? MinLength(6, { message: 'Informe uma senha com no mínimo 6 caracteres' }) : IsOptional(),
   );
 }

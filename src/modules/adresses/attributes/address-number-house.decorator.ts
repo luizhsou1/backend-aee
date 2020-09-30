@@ -5,6 +5,6 @@ import { IsInt, IsOptional } from 'class-validator';
 export function IsAddressNumber(required = true) {
   return applyDecorators(
     ApiProperty({ required }),
-    required ? IsInt({ message: 'O número do endereço deve ser um inteiro' }) : IsOptional(),
+    required ? IsInt({ message: 'Informe um número de endereço do tipo inteiro' }) : IsOptional(),
   );
 }
