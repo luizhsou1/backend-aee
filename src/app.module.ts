@@ -13,6 +13,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
 import { SchoolsModule } from './modules/schools/schools.module';
 import { AdressesModule } from './modules/adresses/adresses.module';
+import { PhonesModule } from './modules/phones/phones.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { AdressesModule } from './modules/adresses/adresses.module';
     AuthModule,
     SchoolsModule,
     AdressesModule,
+    PhonesModule,
   ],
   controllers: [AppController],
   providers: [

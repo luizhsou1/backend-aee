@@ -8,6 +8,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { Address } from '../adresses/address.entity';
+import { Phone } from '../phones/phone.entity';
 
 @Entity()
 export class School extends BaseEntity {
@@ -22,6 +23,9 @@ export class School extends BaseEntity {
 
   @OneToMany((type) => Address, (address) => address.school, { eager: true })
   addresses: Address[];
+
+  @OneToMany((type) => Phone, (phone) => phone.school, { eager: true })
+  phones: Phone[];
 
   @CreateDateColumn()
   createdAt: Date;

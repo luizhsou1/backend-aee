@@ -11,6 +11,8 @@ export const setupSwagger = (app: INestApplication) => {
     .addTag('auth')
     .addTag('users')
     .addTag('schools')
+    .addTag('addresses')
+    .addTag('phones')
     .build();
   const doc = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api/v1/docs', app, doc);
