@@ -28,7 +28,7 @@ export class UsersController {
 
   @Get(':id')
   @Auth(UserRole.ADMIN, UserRole.SUPERVISOR)
-  async findUserById(@Param('id') id): Promise<ReturnUserDto> {
+  async findUserById(@Param('id') id: string): Promise<ReturnUserDto> {
     const user = await this.usersService.findUserById(id);
     return {
       user,
