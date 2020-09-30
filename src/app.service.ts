@@ -4,6 +4,6 @@ import { Injectable } from '@nestjs/common';
 export class AppService {
   // eslint-disable-next-line class-methods-use-this
   getHello(): string {
-    return 'Backend Projeto Special de Pé!!! \u{1F601}';
+    return 'Backend Projeto AEE de Pé!!! \u{1F601}';
   }
 }
