@@ -6,7 +6,6 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { CreateSchoolDto } from './dtos/create-school.dto';
 
 @Entity()
 export class School extends BaseEntity {
