@@ -10,6 +10,7 @@ export class SchoolRepo extends Repository<School> {
   ): Promise<{ schools: School[]; total: number }> {
     const { name, hasAee } = queryDto;
     const query = createQueryPaginationTypeorm(School, 's', queryDto) as SelectQueryBuilder<School>;
+    query.leftJoinAndSelect('s.addresses', 'a');
 
     query.where('s.hasAee = :hasAee', {
       hasAee: (hasAee === '' || hasAee === null || hasAee === undefined || hasAee === 'true') ? 'true' : 'false',

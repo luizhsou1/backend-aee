@@ -5,7 +5,9 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
+import { Address } from '../adresses/address.entity';
 
 @Entity()
 export class School extends BaseEntity {
@@ -17,6 +19,9 @@ export class School extends BaseEntity {
 
   @Column({ default: true, comment: 'Possui AEE' })
   hasAee: boolean;
+
+  @OneToMany((type) => Address, (address) => address.school, { eager: true })
+  addresses: Address[];
 
   @CreateDateColumn()
   createdAt: Date;
