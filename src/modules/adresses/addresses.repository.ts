@@ -8,15 +8,16 @@ export class AddressesRepo extends Repository<Address> {
   async findAdresses(
     queryDto: FindAddressesQueryDto,
   ): Promise<{ addresses: Address[]; total: number }> {
-    const { search, description, cep, neighborhood, street } = queryDto;
+    const { search, description, cep, city, neighborhood, street } = queryDto;
     const query = createQueryPaginationTypeorm(Address, 'a', queryDto) as SelectQueryBuilder<Address>;
 
     query.where('1 = 1');
 
     if (search) {
-      query.andWhere('(a.description ILIKE :description OR a.cep ILIKE :cep OR a.neighborhood ILIKE :neighborhood OR a.street ILIKE :street)', {
+      query.andWhere('(a.description ILIKE :description OR a.cep ILIKE :cep OR a.city ILIKE :city OR a.neighborhood ILIKE :neighborhood OR a.street ILIKE :street)', {
         description: `%${search}%`,
         cep: `%${search}%`,
+        city: `%${search}%`,
         neighborhood: `%${search}%`,
         street: `%${search}%`,
       });
@@ -27,6 +28,10 @@ export class AddressesRepo extends Repository<Address> {
 
       if (cep) {
         query.andWhere('a.cep ILIKE :cep', { cep: `%${cep}%` });
+      }
+
+      if (city) {
+        query.andWhere('a.city ILIKE :city', { city: `%${city}%` });
       }
 
       if (neighborhood) {

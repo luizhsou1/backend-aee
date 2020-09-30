@@ -20,6 +20,8 @@ export class AdressesService {
 
     address.description = createAddressDto.description;
     address.cep = createAddressDto.cep;
+    address.city = createAddressDto.city;
+    address.uf = createAddressDto.uf;
     address.neighborhood = createAddressDto.neighborhood;
     address.street = createAddressDto.street;
     address.addressNumber = createAddressDto.addressNumber;
