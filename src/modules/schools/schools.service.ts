@@ -34,7 +34,7 @@ export class SchoolsService {
       await this.schoolRepo.update(id, updateSchoolDto);
       return await this.findSchoolById(id);
     } catch (error) {
-      handleErrors(error, 'Erro ao atualizar usuário');
+      handleErrors(error, 'Erro ao atualizar escola');
     }
   }
 
