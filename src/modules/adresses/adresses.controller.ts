@@ -28,7 +28,7 @@ export class AdressesController {
   @Get(':id')
   @Auth(UserRole.ADMIN, UserRole.SUPERVISOR)
   async findAddressById(@Param('id') id: string): Promise<ReturnAddressDto> {
-    const address = await this.adressesService.findSAddressById(id);
+    const address = await this.adressesService.findAddressById(id);
     return {
       address,
       message: 'Endereço encontrado',

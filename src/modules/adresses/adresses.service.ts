@@ -33,7 +33,7 @@ export class AdressesService {
     return await this.addressesRepo.save(address);
   }
 
-  async findSAddressById(addressId: string): Promise<Address> {
+  async findAddressById(addressId: string): Promise<Address> {
     const address = await this.addressesRepo.findOne(addressId);
 
     if (!address) throw new NotFoundException('Endereço não encontrado');
@@ -44,7 +44,7 @@ export class AdressesService {
   async updateAddress(updateAddressDto: UpdateAddressDto, id: string): Promise<Address> {
     try {
       await this.addressesRepo.update(id, updateAddressDto);
-      return await this.findSAddressById(id);
+      return await this.findAddressById(id);
     } catch (error) {
       handleErrors(error, 'Erro ao atualizar endereço');
     }
