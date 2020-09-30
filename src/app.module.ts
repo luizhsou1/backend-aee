@@ -12,6 +12,7 @@ import { LoggerInterceptor } from './core/interceptors/logger.interceptor';
 import { AuthModule } from './modules/auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
 import { SchoolsModule } from './modules/schools/schools.module';
+import { AdressesModule } from './modules/adresses/adresses.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { SchoolsModule } from './modules/schools/schools.module';
     UsersModule,
     AuthModule,
     SchoolsModule,
+    AdressesModule,
   ],
   controllers: [AppController],
   providers: [
