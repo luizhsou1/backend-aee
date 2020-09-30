@@ -1,6 +1,13 @@
+import { ApiProperty } from '@nestjs/swagger';
+
 export abstract class BaseQueryParametersDto {
+  @ApiProperty({ required: false })
   sort: string;
+
+  @ApiProperty({ required: false, description: 'Default: 1' })
   page: number;
+
+  @ApiProperty({ required: false, description: 'Default: 100' })
   limit: number;
 }
 

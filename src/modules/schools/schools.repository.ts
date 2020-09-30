@@ -16,7 +16,7 @@ export class SchoolRepo extends Repository<School> {
     });
 
     if (name) {
-      query.andWhere('u.name ILIKE :name', { name: `%${name}%` });
+      query.andWhere('s.name ILIKE :name', { name: `%${name}%` });
     }
 
     const [schools, total] = await query.getManyAndCount();
