@@ -7,6 +7,10 @@ export const setupSwagger = (app: INestApplication) => {
     .setTitle('Documentação AEE')
     .setDescription('Documentação do projeto AEE')
     .setVersion('0.0.1')
+    .addTag('application')
+    .addTag('auth')
+    .addTag('users')
+    .addTag('schools')
     .build();
   const doc = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api/v1/docs', app, doc);
