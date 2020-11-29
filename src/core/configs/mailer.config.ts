@@ -1,9 +1,10 @@
-import { MailerOptions } from '@nestjs-modules/mailer';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 
 import * as path from 'path';
 
-export const mailerConfig: MailerOptions = {
+import { registerAs } from '@nestjs/config';
+
+export default registerAs('mailer', () => ({
   template: {
     dir: path.resolve(__dirname, '..', '..', '..', 'templates'),
     adapter: new HandlebarsAdapter(),
@@ -12,5 +13,5 @@ export const mailerConfig: MailerOptions = {
       layoutsDir: path.resolve(__dirname, '..', '..', '..', 'templates'),
     },
   },
-  transport: 'smtps://projetoaee.tcc@gmail.com:BrunoKamadaMestre2020@smtp.gmail.com',
-};
+  transport: process.env.URL_TRANSPORT,
+}));

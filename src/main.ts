@@ -1,3 +1,5 @@
+import { Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { WinstonModule } from 'nest-winston';
 import { AppModule } from './app.module';
@@ -11,6 +13,9 @@ async function bootstrap() {
   app.setGlobalPrefix('api/v1');
   setupCors(app);
   setupSwagger(app);
-  await app.listen(3040);
+
+  const configService = app.get(ConfigService);
+  await app.listen(configService.get('app.port'));
+  Logger.log(`API Projeto AEE is running on: ${(await app.getUrl()).replace('[::1]', 'localhost')}`);
 }
 bootstrap();

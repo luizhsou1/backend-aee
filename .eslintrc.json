@@ -36,6 +36,7 @@
         "class-methods-use-this": "off",
         "import/extensions": "off",
         "no-return-await": "off",
-        "no-param-reassign": "off"
+        "no-param-reassign": "off",
+        "radix": "off"
     }
 }
