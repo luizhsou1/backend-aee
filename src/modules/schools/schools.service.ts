@@ -18,6 +18,20 @@ export class SchoolsService {
     const school = new School();
     school.name = createSchoolDto.name;
     school.hasAee = createSchoolDto.hasAee;
+
+    // Para sempre criar um novo
+    createSchoolDto.addresses = createSchoolDto.addresses.map((address) => {
+      delete address.id;
+      return address;
+    });
+    school.addresses = createSchoolDto.addresses;
+
+    // Para sempre criar um novo
+    createSchoolDto.phones = createSchoolDto.phones.map((phone) => {
+      delete phone.id;
+      return phone;
+    });
+    school.phones = createSchoolDto.phones;
     return await this.schoolRepo.save(school);
   }
 
@@ -31,8 +45,12 @@ export class SchoolsService {
 
   async updateSchool(updateSchoolDto: UpdateSchoolDto, id: string): Promise<School> {
     try {
-      await this.schoolRepo.update(id, updateSchoolDto);
-      return await this.findSchoolById(id);
+      const school = await this.findSchoolById(id);
+      school.name = updateSchoolDto.name;
+      school.hasAee = updateSchoolDto.hasAee;
+      school.addresses = updateSchoolDto.addresses;
+      school.phones = updateSchoolDto.phones;
+      return await this.schoolRepo.save(school);
     } catch (error) {
       handleErrors(error, 'Erro ao atualizar escola');
     }

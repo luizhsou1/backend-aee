@@ -21,10 +21,10 @@ export class School extends BaseEntity {
   @Column({ default: true, comment: 'Possui AEE' })
   hasAee: boolean;
 
-  @OneToMany((type) => Address, (address) => address.school, { eager: true })
+  @OneToMany((type) => Address, (address) => address.school, { cascade: true, eager: true })
   addresses: Address[];
 
-  @OneToMany((type) => Phone, (phone) => phone.school, { eager: true })
+  @OneToMany((type) => Phone, (phone) => phone.school, { cascade: true, eager: true })
   phones: Phone[];
 
   @CreateDateColumn()
