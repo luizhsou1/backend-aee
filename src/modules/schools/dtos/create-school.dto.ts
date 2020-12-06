@@ -1,9 +1,9 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Address } from '../../adresses/address.entity';
 import { IsSchoolHasAee } from '../attributes/school-has-aee.decorator';
 import { IsSchoolName } from '../attributes/school-name.decorator';
-import { IsArrayOfAddress } from '../attributes/school-array-of-address.decorator';
-import { IsArrayOfPhone } from '../attributes/school-array-of-phones.decorator';
 import { Phone } from '../../phones/phone.entity';
+import { IsArrayOfPhone } from '../../../shared/dtos/attributes/array-of-phones.decorator';
 
 export class CreateSchoolDto {
   @IsSchoolName()
@@ -12,8 +12,8 @@ export class CreateSchoolDto {
   @IsSchoolHasAee()
   hasAee: boolean;
 
-  @IsArrayOfAddress()
-  addresses: Address[];
+  @ApiProperty({ required: true })
+  address: Address;
 
   @IsArrayOfPhone()
   phones: Phone[];

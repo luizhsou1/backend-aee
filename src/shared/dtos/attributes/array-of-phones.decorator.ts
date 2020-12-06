@@ -2,13 +2,13 @@ import { applyDecorators } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer/decorators';
 import { IsArray, ValidateNested } from 'class-validator';
-import { Address } from '../../adresses/address.entity';
+import { Phone } from '../../../modules/phones/phone.entity';
 
-export function IsArrayOfAddress(required = true, insert = true) {
+export function IsArrayOfPhone(required = true, insert = true) {
   return applyDecorators(
     ApiProperty({ required }),
-    IsArray({ message: insert ? 'Informe ao menos um endereço para escola' : 'É preciso ter pelo menos um endereço vinculado a escola' }),
+    IsArray({ message: insert ? 'Informe ao menos um telefone para escola' : 'É preciso ter pelo menos um telefone vinculado a escola' }),
     ValidateNested({ each: true }),
-    Type(() => Address),
+    Type(() => Phone),
   );
 }

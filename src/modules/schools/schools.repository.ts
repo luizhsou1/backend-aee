@@ -10,11 +10,12 @@ export class SchoolRepo extends Repository<School> {
   ): Promise<{ schools: School[]; total: number }> {
     const { name, hasAee } = queryDto;
     const query = createQueryPaginationTypeorm(School, 's', queryDto) as SelectQueryBuilder<School>;
-    query.leftJoinAndSelect('s.addresses', 'a');
+    query.leftJoinAndSelect('s.addresses', 'a')
+      .where('1 = 1');
 
-    query.where('s.hasAee = :hasAee', {
-      hasAee: (hasAee === '' || hasAee === null || hasAee === undefined || hasAee === 'true') ? 'true' : 'false',
-    });
+    if (hasAee) {
+      query.andWhere('s.hasAee = :hasAee', { hasAee });
+    }
 
     if (name) {
       query.andWhere('s.name ILIKE :name', { name: `%${name}%` });

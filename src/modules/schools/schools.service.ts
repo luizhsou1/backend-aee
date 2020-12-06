@@ -18,13 +18,7 @@ export class SchoolsService {
     const school = new School();
     school.name = createSchoolDto.name;
     school.hasAee = createSchoolDto.hasAee;
-
-    // Para sempre criar um novo
-    createSchoolDto.addresses = createSchoolDto.addresses.map((address) => {
-      delete address.id;
-      return address;
-    });
-    school.addresses = createSchoolDto.addresses;
+    school.address = createSchoolDto.address;
 
     // Para sempre criar um novo
     createSchoolDto.phones = createSchoolDto.phones.map((phone) => {
@@ -48,7 +42,7 @@ export class SchoolsService {
       const school = await this.findSchoolById(id);
       school.name = updateSchoolDto.name;
       school.hasAee = updateSchoolDto.hasAee;
-      school.addresses = updateSchoolDto.addresses;
+      school.address = updateSchoolDto.address;
       school.phones = updateSchoolDto.phones;
       return await this.schoolRepo.save(school);
     } catch (error) {

@@ -8,6 +8,7 @@ import {
   ManyToOne,
 } from 'typeorm';
 import { School } from '../schools/school.entity';
+import { Teacher } from '../teachers/teacher.entity';
 
 @Entity()
 export class Phone extends BaseEntity {
@@ -22,6 +23,9 @@ export class Phone extends BaseEntity {
 
   @ManyToOne((type) => School, (school) => school.phones)
   school: School;
+
+  @ManyToOne((type) => Teacher, (teacher) => teacher.phones)
+  teacher: Teacher;
 
   @CreateDateColumn()
   createdAt: Date;

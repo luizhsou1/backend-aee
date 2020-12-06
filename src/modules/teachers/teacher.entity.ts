@@ -9,23 +9,37 @@ import {
   OneToOne,
   JoinColumn,
 } from 'typeorm';
-import { Address } from '../adresses/address.entity';
 import { Phone } from '../phones/phone.entity';
+import { School } from '../schools/school.entity';
+import { TeacherShiftAee } from './teacher-shift-aee.enum';
 
 @Entity()
-export class School extends BaseEntity {
+export class Teacher extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({ length: 100 })
   name: string;
 
-  @Column({ default: true, comment: 'Possui AEE' })
-  hasAee: boolean;
+  @Column({ length: 100 })
+  email: string;
 
-  @OneToOne(() => Address, (address) => address.school, { cascade: true, eager: true })
+  @OneToOne(() => School, { eager: true })
   @JoinColumn()
-  address: Address;
+  school: School;
+
+  @Column({
+    type: 'enum',
+    enum: TeacherShiftAee,
+    array: true,
+  })
+  shiftsAee: TeacherShiftAee[];
+
+  @Column({ default: false })
+  supportTeacher: boolean;
+
+  @Column({ length: 100 })
+  occupationArea: string;
 
   @OneToMany((type) => Phone, (phone) => phone.school, { cascade: true, eager: true })
   phones: Phone[];
