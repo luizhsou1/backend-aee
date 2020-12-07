@@ -11,6 +11,7 @@ import {
 } from 'typeorm';
 import { Phone } from '../phones/phone.entity';
 import { School } from '../schools/school.entity';
+import { User } from '../users/user.entity';
 import { TeacherShiftAee } from './teacher-shift-aee.enum';
 
 @Entity()
@@ -43,6 +44,10 @@ export class Teacher extends BaseEntity {
 
   @OneToMany((type) => Phone, (phone) => phone.school, { cascade: true, eager: true })
   phones: Phone[];
+
+  @OneToOne(() => User, (user) => user.teacher, { cascade: true, eager: true })
+  @JoinColumn()
+  user: User;
 
   @CreateDateColumn()
   createdAt: Date;

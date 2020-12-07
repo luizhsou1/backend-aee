@@ -9,9 +9,6 @@ export class UpdateUserDto {
   @IsUserName(false)
   name: string;
 
-  @IsUserRole(false)
-  role: UserRole;
-
   @IsUserActive(false)
   active: boolean;
 }

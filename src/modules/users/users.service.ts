@@ -4,6 +4,7 @@ import { handleErrors } from 'src/shared/utils/errors-helper';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { FindUsersQueryDto } from './dtos/find-users-query.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
+import { UserRole } from './user-roles.enum';
 import { User } from './user.entity';
 import { UserRepo } from './users.repository';
 
@@ -14,11 +15,19 @@ export class UsersService {
     private readonly userRepo: UserRepo,
   ) { }
 
-  async createUser(createUserDto: CreateUserDto): Promise<User> {
+  async createAdminUser(createUserDto: CreateUserDto): Promise<User> {
     if (createUserDto.password !== createUserDto.passwordConfirmation) {
       throw new UnprocessableEntityException('As senhas não conferem');
     } else {
-      return await this.userRepo.createUser(createUserDto);
+      return await this.userRepo.createUser(createUserDto, UserRole.ADMIN);
+    }
+  }
+
+  async createSupervisorUser(createUserDto: CreateUserDto): Promise<User> {
+    if (createUserDto.password !== createUserDto.passwordConfirmation) {
+      throw new UnprocessableEntityException('As senhas não conferem');
+    } else {
+      return await this.userRepo.createUser(createUserDto, UserRole.SUPERVISOR);
     }
   }
 

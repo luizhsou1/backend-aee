@@ -13,16 +13,27 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
-  @Post()
+  @Post('admin')
   @Auth(UserRole.ADMIN, UserRole.SUPERVISOR)
-  async createUser(
+  async createAdminUser(
     @Body(ValidationPipe) createUserDto: CreateUserDto,
   ): Promise<ReturnUserDto> {
-    const user = await this.usersService.createUser(createUserDto);
-    const role = this.convertRoleToPortuguese(createUserDto.role);
+    const user = await this.usersService.createAdminUser(createUserDto);
     return {
       user,
-      message: `${role} cadastrado com sucesso`,
+      message: 'Administrador cadastrado com sucesso',
+    };
+  }
+
+  @Post('supervisor')
+  @Auth(UserRole.ADMIN, UserRole.SUPERVISOR)
+  async createSupervisorUser(
+    @Body(ValidationPipe) createUserDto: CreateUserDto,
+  ): Promise<ReturnUserDto> {
+    const user = await this.usersService.createSupervisorUser(createUserDto);
+    return {
+      user,
+      message: 'Supervisor cadastrado com sucesso',
     };
   }
 
@@ -66,15 +77,5 @@ export class UsersController {
       ...found,
       message: 'Usuários encontrados',
     };
-  }
-
-  private convertRoleToPortuguese(role: UserRole): string {
-    if (role === UserRole.ADMIN) {
-      return 'Administrador';
-    } if (role === UserRole.SUPERVISOR) {
-      return 'Supervisor';
-    } if (role === UserRole.TEACHER) {
-      return 'Professor';
-    }
   }
 }

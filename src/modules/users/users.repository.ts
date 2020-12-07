@@ -6,6 +6,7 @@ import { createQueryPaginationTypeorm } from 'src/shared/utils/query-pagination-
 import { CreateUserDto } from './dtos/create-user.dto';
 import { User } from './user.entity';
 import { FindUsersQueryDto } from './dtos/find-users-query.dto';
+import { UserRole } from './user-roles.enum';
 
 @EntityRepository(User)
 export class UserRepo extends Repository<User> {
@@ -43,8 +44,8 @@ export class UserRepo extends Repository<User> {
     return { users, total };
   }
 
-  async createUser(createUserDto: CreateUserDto): Promise<User> {
-    const { email, name, password, role } = createUserDto;
+  async createUser(createUserDto: CreateUserDto, role: UserRole): Promise<User> {
+    const { email, name, password } = createUserDto;
 
     const user = this.create();
     user.email = email;

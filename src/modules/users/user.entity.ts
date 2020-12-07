@@ -6,9 +6,13 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
+  OneToOne,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { UserRole } from './user-roles.enum';
+import { School } from '../schools/school.entity';
+import { Teacher } from '../teachers/teacher.entity';
 
 @Entity()
 @Unique(['email'])
@@ -36,6 +40,12 @@ export class User extends BaseEntity {
 
   @Column({ nullable: true, length: 64 })
   recoverToken: string;
+
+  @OneToMany((type) => School, (school) => school.user)
+  sourceSchool: School;
+
+  @OneToOne((type) => Teacher, (teacher) => teacher.user)
+  teacher: Teacher;
 
   @CreateDateColumn()
   createdAt: Date;

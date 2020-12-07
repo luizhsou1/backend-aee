@@ -8,9 +8,6 @@ export class CreateUserDto {
   @IsUserName()
   name: string;
 
-  @IsUserRole()
-  role: UserRole;
-
   @IsUserPassword()
   password: string;
 

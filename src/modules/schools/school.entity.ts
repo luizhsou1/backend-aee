@@ -8,9 +8,11 @@ import {
   OneToMany,
   OneToOne,
   JoinColumn,
+  ManyToOne,
 } from 'typeorm';
 import { Address } from '../adresses/address.entity';
 import { Phone } from '../phones/phone.entity';
+import { User } from '../users/user.entity';
 
 @Entity()
 export class School extends BaseEntity {
@@ -29,6 +31,9 @@ export class School extends BaseEntity {
 
   @OneToMany((type) => Phone, (phone) => phone.school, { cascade: true, eager: true })
   phones: Phone[];
+
+  @ManyToOne((type) => User, (user) => user.sourceSchool)
+  user: User;
 
   @CreateDateColumn()
   createdAt: Date;
