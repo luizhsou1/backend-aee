@@ -10,8 +10,8 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { Phone } from '../phones/phone.entity';
-import { School } from '../schools/school.entity';
-import { User } from '../users/user.entity';
+import { School } from '../../schools/school.entity';
+import { User } from '../../users/user.entity';
 import { TeacherShiftAee } from './teacher-shift-aee.enum';
 
 @Entity()

@@ -8,8 +8,8 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
-import { Address } from '../adresses/address.entity';
-import { Phone } from '../phones/phone.entity';
+import { Address } from '../../shared/entities/address.entity';
+import { Phone } from '../../shared/entities/phone.entity';
 import { User } from '../users/user.entity';
 
 @Entity()

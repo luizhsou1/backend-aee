@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query, ValidationPipe } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Auth } from 'src/shared/custom-decorators/auth.decorator';
-import { UserRole } from '../users/user-roles.enum';
+import { UserRole } from '../../users/user-roles.enum';
 import { AdressesService } from './adresses.service';
 import { CreateAddressDto } from './dtos/create-address.dto';
 import { FindAddressesQueryDto } from './dtos/find-addresses-query.dto';

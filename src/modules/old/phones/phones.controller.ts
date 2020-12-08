@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query, ValidationPipe } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Auth } from 'src/shared/custom-decorators/auth.decorator';
-import { UserRole } from '../users/user-roles.enum';
+import { UserRole } from '../../users/user-roles.enum';
 import { CreatePhoneDto } from './dtos/create-phone.dto';
 import { FindPhonesQueryDto } from './dtos/find-phone-query.dto';
 import { ReturPhoneDto } from './dtos/return-phone.dto';

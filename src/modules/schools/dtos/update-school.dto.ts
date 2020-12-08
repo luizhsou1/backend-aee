@@ -1,9 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Address } from '../../adresses/address.entity';
 import { IsSchoolHasAee } from '../attributes/school-has-aee.decorator';
 import { IsSchoolName } from '../attributes/school-name.decorator';
-import { Phone } from '../../phones/phone.entity';
 import { IsArrayOfPhone } from '../../../shared/dtos/attributes/array-of-phones.decorator';
+import { Address } from '../../../shared/entities/address.entity';
+import { Phone } from '../../../shared/entities/phone.entity';
 
 export class UpdateSchoolDto {
   @IsSchoolName(false)

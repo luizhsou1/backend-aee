@@ -10,14 +10,14 @@ import { LoggerInterceptor } from './core/interceptors/logger.interceptor';
 import { AuthModule } from './modules/auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
 import { SchoolsModule } from './modules/schools/schools.module';
-import { AdressesModule } from './modules/adresses/adresses.module';
-import { PhonesModule } from './modules/phones/phones.module';
+import { AdressesModule } from './modules/old/adresses/adresses.module';
+import { PhonesModule } from './modules/old/phones/phones.module';
 import { DeficienciesModule } from './modules/deficiencies/deficiencies.module';
 import appConfig from './core/configs/app.config';
 import typeormConfig from './core/configs/typeorm.config';
 import mailerConfig from './core/configs/mailer.config';
 import { winstonConfig } from './core/configs/winston.config';
-import { TeachersModule } from './modules/teachers/teachers.module';
+import { TeachersModule } from './modules/old/teachers/teachers.module';
 @Module({
   imports: [
     ConfigModule.forRoot({

@@ -1,10 +1,9 @@
-import { UserRole } from '../user-roles.enum';
-import { IsUserEmail, IsUserName, IsUserRole, IsUserPassword, IsUserPasswordConfirmation } from '../attributes';
+import { IsUserEmail, IsUserName, IsUserPassword, IsUserPasswordConfirmation } from '../attributes';
 import { IsObjectWithId } from '../../../shared/custom-decorators/is-object-with-id';
 import { School } from '../../schools/school.entity';
-import { Teacher } from '../../teachers/teacher.entity';
 import { IsArrayOfPhone } from '../../../shared/dtos/attributes/array-of-phones.decorator';
-import { Phone } from '../../phones/phone.entity';
+import { Phone } from '../../../shared/entities/phone.entity';
+import { Teacher } from '../teacher.entity';
 
 export class CreateUserDto {
   @IsUserEmail()

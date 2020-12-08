@@ -1,5 +1,5 @@
 import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { School } from '../schools/school.entity';
+import { School } from '../../schools/school.entity';
 
 @Entity()
 export class Address extends BaseEntity {

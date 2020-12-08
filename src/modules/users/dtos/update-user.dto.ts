@@ -1,9 +1,9 @@
 import { IsUserEmail, IsUserName } from '../attributes';
 import { IsArrayOfPhone } from '../../../shared/dtos/attributes/array-of-phones.decorator';
-import { Phone } from '../../phones/phone.entity';
 import { IsObjectWithId } from '../../../shared/custom-decorators/is-object-with-id';
 import { School } from '../../schools/school.entity';
-import { Teacher } from '../../teachers/teacher.entity';
+import { Phone } from '../../../shared/entities/phone.entity';
+import { Teacher } from '../teacher.entity';
 
 export class UpdateUserDto {
   @IsUserEmail()

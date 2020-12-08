@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { handleErrors } from '../../shared/utils/errors-helper';
+import { handleErrors } from '../../../shared/utils/errors-helper';
 import { CreateTeacherDto } from './dtos/create-teacher.dto';
 import { FindTeachersQueryDto } from './dtos/find-teachers-query.dto';
 import { UpdateTeacherDto } from './dtos/update-teacher.dto';

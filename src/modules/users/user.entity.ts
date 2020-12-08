@@ -13,8 +13,8 @@ import {
 import * as bcrypt from 'bcrypt';
 import { UserRole } from './user-roles.enum';
 import { School } from '../schools/school.entity';
-import { Teacher } from '../teachers/teacher.entity';
-import { Phone } from '../phones/phone.entity';
+import { Phone } from '../../shared/entities/phone.entity';
+import { Teacher } from './teacher.entity';
 
 @Entity()
 @Unique(['email'])

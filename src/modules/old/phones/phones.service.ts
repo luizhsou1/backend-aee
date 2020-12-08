@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { handleErrors } from 'src/shared/utils/errors-helper';
-import { School } from '../schools/school.entity';
+import { School } from '../../schools/school.entity';
 import { CreatePhoneDto } from './dtos/create-phone.dto';
 import { FindPhonesQueryDto } from './dtos/find-phone-query.dto';
 import { UpdatePhoneDto } from './dtos/update-phone.dto';

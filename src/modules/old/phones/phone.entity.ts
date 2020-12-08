@@ -7,8 +7,8 @@ import {
   UpdateDateColumn,
   ManyToOne,
 } from 'typeorm';
-import { School } from '../schools/school.entity';
-import { User } from '../users/user.entity';
+import { School } from '../../schools/school.entity';
+import { User } from '../../users/user.entity';
 
 @Entity()
 export class Phone extends BaseEntity {
