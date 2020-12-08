@@ -9,10 +9,8 @@ export const setupSwagger = (app: INestApplication) => {
     .setVersion('0.0.1')
     .addTag('application')
     .addTag('auth')
-    .addTag('users')
     .addTag('schools')
-    .addTag('adresses')
-    .addTag('phones')
+    .addTag('users')
     .build();
   const doc = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api/v1/docs', app, doc);
