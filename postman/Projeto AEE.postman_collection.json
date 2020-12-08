@@ -366,7 +366,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"luizhsou1@gmail.com\",\n    \"name\": \"Luiz Henrique\",\n    \"role\": \"ADMIN\",\n    \"password\": \"123456\",\n    \"passwordConfirmation\": \"123456\"\n}",
+							"raw": "{\n    \"email\": \"admin3@mail.com\",\n    \"name\": \"Administrador\",\n    \"password\": \"123456\",\n    \"passwordConfirmation\": \"123456\",\n    \"phones\": [\n        {\n            \"description\": \"Telefone\",\n            \"phoneNumber\": \"11111111111\"\n        },\n        {\n            \"description\": \"Celular\",\n            \"phoneNumber\": \"22222222222\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -374,12 +374,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/users",
+							"raw": "{{base_url}}/users/admin",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"users"
+								"users",
+								"admin"
 							]
 						}
 					},
@@ -420,7 +421,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"luizhsou1@gmail.com\",\n    \"name\": \"Luiz Henrique\",\n    \"role\": \"SUPERVISOR\",\n    \"password\": \"123456\",\n    \"passwordConfirmation\": \"123456\"\n}",
+							"raw": "{\n    \"email\": \"luizhsou1@gmail.com\",\n    \"name\": \"Luiz Henrique\",\n    \"password\": \"123456\",\n    \"passwordConfirmation\": \"123456\",\n    \"phones\": [\n        {\n            \"description\": \"Telefone\",\n            \"phoneNumber\": \"3432546878\"\n        },\n        {\n            \"description\": \"Celular\",\n            \"phoneNumber\": \"34992546878\"\n        }\n    ],\n    \"sourceSchool\": {\n        \"id\": \"9e3519d2-7db6-4a49-a788-d5875fc17758\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -428,12 +429,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/users",
+							"raw": "{{base_url}}/users/supervisor",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"users"
+								"users",
+								"supervisor"
 							]
 						}
 					},
@@ -474,7 +476,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"luizhsou1@gmail.com\",\n    \"name\": \"Luiz Henrique\",\n    \"role\": \"TEACHER\",\n    \"password\": \"123456\",\n    \"passwordConfirmation\": \"123456\"\n}",
+							"raw": "{\n    \"email\": \"josedasilva@mail.com\",\n    \"name\": \"jose da Silva Henrique\",\n    \"password\": \"123456\",\n    \"passwordConfirmation\": \"123456\",\n    \"sourceSchool\": {\n        \"id\": \"9e3519d2-7db6-4a49-a788-d5875fc17758\"\n    },\n    \"phones\": [\n        {\n            \"description\": \"Telefone\",\n            \"phoneNumber\": \"3432546878\"\n        },\n        {\n            \"description\": \"Celular\",\n            \"phoneNumber\": \"34992546878\"\n        }\n    ],\n    \"teacher\": {\n        \"name\": \"Jose da Silva\",\n        \"email\": true,\n        \"shiftsAee\": [\"MORNING\", \"AFTERNOON\"],\n        \"occupationArea\": \"1º ano 5º ano\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -482,12 +484,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/users",
+							"raw": "{{base_url}}/users/teacher",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"users"
+								"users",
+								"teacher"
 							]
 						}
 					},
@@ -583,7 +586,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "404fb1d1-90cb-46c3-be4b-79e0e2311ae6"
+									"value": "a62281fa-e24a-4dfb-9f93-2171dc0349a7"
 								}
 							]
 						}
@@ -591,7 +594,7 @@
 					"response": []
 				},
 				{
-					"name": "Update User",
+					"name": "Update User Admin",
 					"event": [
 						{
 							"listen": "test",
@@ -625,7 +628,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"luiz@mail.com\",\n    \"name\": \"luiz@mail.com\",\n    \"role\": \"SUPERVISOR\",\n    \"active\": true\n}",
+							"raw": "{\n        \"email\": \"admin2@mail.com\",\n        \"name\": \"Administrador 3333\",\n        \"phones\": [\n            {\n                \"description\": \"Telefone\",\n                \"phoneNumber\": \"333333333333\",\n                \"id\": \"db5f4ff6-519c-44b2-8095-559cfc07bdb9\",\n                \"createdAt\": \"2020-12-08T07:41:34.416Z\",\n                \"updatedAt\": \"2020-12-08T07:41:34.416Z\"\n            },\n            {\n                \"description\": \"Celular\",\n                \"phoneNumber\": \"444444444444\",\n                \"id\": \"ec43fb1e-543c-41ea-a8ec-4bd0c8f408e1\",\n                \"createdAt\": \"2020-12-08T07:41:34.416Z\",\n                \"updatedAt\": \"2020-12-08T07:41:34.416Z\"\n            }\n        ],\n        \"active\": true\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -633,18 +636,143 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/users/:id",
+							"raw": "{{base_url}}/users/admin/:id",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"users",
+								"admin",
 								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": "8c9b1eb7-0381-4512-a4a4-ed55c6fefbd1"
+									"value": "ac28186a-8133-4edb-a19f-b8efc9bcc07f"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Supervisor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "db6b68b6-0149-488b-a5a6-b515c9b74bae",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"email\": \"luizhsou1@gmail.com\",\n        \"name\": \"Luiz Henrique\",\n        \"phones\": [\n            {\n                \"description\": \"Telefone\",\n                \"phoneNumber\": \"3432546878\",\n                \"id\": \"b862cab7-8d48-4011-b752-7147abdfd675\",\n                \"createdAt\": \"2020-12-08T07:58:32.002Z\",\n                \"updatedAt\": \"2020-12-08T07:58:32.002Z\"\n            },\n            {\n                \"description\": \"Celular\",\n                \"phoneNumber\": \"34992546879\",\n                \"id\": \"25caddca-8636-48ff-b0de-fb7fcc3b349b\",\n                \"createdAt\": \"2020-12-08T07:58:32.002Z\",\n                \"updatedAt\": \"2020-12-08T07:58:32.002Z\"\n            },\n            {\n                \"description\": \"Outro\",\n                \"phoneNumber\": \"77777777777\"\n            }\n        ],\n        \"sourceSchool\": {\n            \"id\": \"80b6b038-1758-4814-a334-3f7bc64f7492\"\n        },\n        \"active\": true,\n        \"createdAt\": \"2020-12-08T07:58:32.002Z\",\n        \"updatedAt\": \"2020-12-08T07:58:32.002Z\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/supervisor/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"supervisor",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "93252add-152d-4e99-ae76-b8ff837c0a8a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Teacher",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3dae0f5c-7d1d-48f8-bf29-23f60ce0529f",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"email\": \"josedasilva222@mail.com\",\n        \"name\": \"jose da Silva Henrique 222\",\n        \"phones\": [\n            {\n                \"description\": \"Telefone\",\n                \"phoneNumber\": \"178887418888888888\",\n                \"id\": \"3d64b9f6-b5b7-4f02-a8a3-d8a1255c25df\",\n                \"createdAt\": \"2020-12-08T08:03:22.965Z\",\n                \"updatedAt\": \"2020-12-08T08:03:22.965Z\"\n            },\n            {\n                \"description\": \"Celular\",\n                \"phoneNumber\": \"5617481847\",\n                \"id\": \"e81751a9-952a-4b8f-ac4a-d6e3dd98f390\",\n                \"createdAt\": \"2020-12-08T08:03:22.965Z\",\n                \"updatedAt\": \"2020-12-08T08:03:22.965Z\"\n            }\n        ],\n        \"sourceSchool\": {\n            \"id\": \"80b6b038-1758-4814-a334-3f7bc64f7492\"\n        },\n        \"teacher\": {\n            \"name\": \"Jose da Silva\",\n            \"email\": true,\n            \"shiftsAee\": [\n                \"MORNING\",\n                \"AFTERNOON\"\n            ],\n            \"occupationArea\": \"1º ano 5º ano\",\n            \"id\": \"a70c421c-5120-4472-915e-ee408e077d30\",\n            \"supportTeacher\": false,\n            \"createdAt\": \"2020-12-08T08:03:22.965Z\",\n            \"updatedAt\": \"2020-12-08T08:03:22.965Z\"\n        },\n        \"active\": true,\n        \"createdAt\": \"2020-12-08T08:03:22.965Z\",\n        \"updatedAt\": \"2020-12-08T08:03:22.965Z\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/teacher/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"teacher",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "ebadbcb6-477f-4471-bff3-4df436258991"
 								}
 							]
 						}
@@ -696,7 +824,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "8c9b1eb7-0381-4512-a4a4-ed55c6fefbd1"
+									"value": "f68653ab-a286-4e9f-b337-920010048838"
 								}
 							]
 						}
@@ -744,7 +872,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"dsds\",\n    \"hasAee\": true,\n    \"addresses\": [{\n        \"description\": \"Qualquer\",\n        \"cep\": \"string\",\n        \"city\": \"string\",\n        \"uf\": \"string\",\n        \"neighborhood\": \"string\",\n        \"street\": \"string\",\n        \"addressNumber\": 0,\n        \"complement\": \"string\"\n    }],\n    \"phones\": [\n        {\n            \"description\": \"Qualquer\",\n            \"phoneNumber\": \"000000\"\n        },\n        {\n            \"description\": \"Qualquer 2\",\n            \"phoneNumber\": \"4444444444\"\n        }\n    ]\n}",
+							"raw": "{\n    \"name\": \"Escola Estadual Ângela Teixeira da Silva\",\n    \"hasAee\": false,\n    \"address\": {\n        \"description\": \"\",\n        \"cep\": \"\",\n        \"city\": \"Uberlândia\",\n        \"uf\": \"MG\",\n        \"neighborhood\": \"Daniel Fonseca\",\n        \"street\": \"Rua Lambarí\",\n        \"addressNumber\": 385,\n        \"complement\": \"\"\n    },\n    \"phones\": [\n        {\n            \"description\": \"Telefone\",\n            \"phoneNumber\": \"3432369597\"\n        }\n    ]\n  }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -777,6 +905,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -796,13 +927,32 @@
 								"value": "Bearer {{token}}"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{base_url}}/users",
+							"raw": "{{base_url}}/schools?name=&hasAee=",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"users"
+								"schools"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": ""
+								},
+								{
+									"key": "hasAee",
+									"value": ""
+								}
 							]
 						}
 					},
@@ -842,18 +992,18 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/users/:id",
+							"raw": "{{base_url}}/schools/:id",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"users",
+								"schools",
 								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": "404fb1d1-90cb-46c3-be4b-79e0e2311ae6"
+									"value": "ce5c446b-7666-4862-aad4-3dcddd4ba8de"
 								}
 							]
 						}
@@ -895,7 +1045,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"dsds\",\n    \"hasAee\": true,\n    \"addresses\": [],\n    \n}",
+							"raw": "{\n        \"name\": \"Escola Estadual Ângela Teixeira da Souza\",\n        \"hasAee\": true,\n        \"address\": {\n            \"id\": \"8f1d165f-9d92-44a3-9767-c6e54d3d47f8\",\n            \"description\": \"\",\n            \"cep\": \"38400420\",\n            \"city\": \"Uberlândia\",\n            \"uf\": \"MG\",\n            \"neighborhood\": \"Daniel Fonseca\",\n            \"street\": \"Rua Lambarí da Silva\",\n            \"addressNumber\": 385,\n            \"complement\": \"\",\n            \"createdAt\": \"2020-12-08T05:42:07.186Z\",\n            \"updatedAt\": \"2020-12-08T05:42:07.186Z\"\n        },\n        \"phones\": [\n            {\n                \"id\": \"b9bf53bf-e057-4e24-8a9b-9e3a112f9573\",\n                \"description\": \"Telefone\",\n                \"phoneNumber\": \"3432369598\",\n                \"createdAt\": \"2020-12-08T05:42:07.186Z\",\n                \"updatedAt\": \"2020-12-08T05:42:07.186Z\"\n            },\n            {\n                \"id\": \"ac2bcee7-85ca-4a7f-a6fb-1e050427a426\",\n                \"description\": \"Celular\",\n                \"phoneNumber\": \"9999999998\"\n            }\n        ]\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -914,7 +1064,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "c19fb1b4-774f-44f3-b558-f325551c1202"
+									"value": "ce5c446b-7666-4862-aad4-3dcddd4ba8de"
 								}
 							]
 						}
@@ -955,288 +1105,18 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/users/:id",
+							"raw": "{{base_url}}/schools/:id",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"users",
+								"schools",
 								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": "8c9b1eb7-0381-4512-a4a4-ed55c6fefbd1"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Teachers",
-			"item": [
-				{
-					"name": "Create Teacher",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "a7d9e13e-e782-4bab-a692-a674064a2beb",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Bearer {{token}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"dsds\",\n    \"email\": true,\n    \"school\": {\n        \"id\": \"7d5b6bdb-4c15-41d8-a912-8075ae5fc24b\"\n    },\n    \"shiftsAee\": [\"MORNING\", \"AFTERNOON\"],\n    \"occupationArea\": \"1º ano 5º ano\",\n    \"phones\": [\n        {\n            \"description\": \"Qualquer 2\",\n            \"phoneNumber\": \"1232433\"\n        }\n    ]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/teachers",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"teachers"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get All Teachers",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "9760f5e3-7188-417d-9335-3a863100bdbd",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Bearer {{token}}"
-							}
-						],
-						"url": {
-							"raw": "{{base_url}}/teachers",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"teachers"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Teacher by Id",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "ce941e18-f9fd-4df8-be72-09495bd40672",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Bearer {{token}}"
-							}
-						],
-						"url": {
-							"raw": "{{base_url}}/teachers/:id",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"teachers",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "404fb1d1-90cb-46c3-be4b-79e0e2311ae6"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Teacher",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "1d2b89c2-7dfb-498f-8568-99f0bca6e132",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Bearer {{token}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"dsds\",\n    \"hasAee\": true,\n    \"addresses\": [],\n    \n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/teachers/:id",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"teachers",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "c19fb1b4-774f-44f3-b558-f325551c1202"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Teacher",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "b7d048a8-d84d-401e-a816-df7ca5c470f3",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Bearer {{token}}"
-							}
-						],
-						"url": {
-							"raw": "{{base_url}}/teachers/:id",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"teachers",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "8c9b1eb7-0381-4512-a4a4-ed55c6fefbd1"
+									"value": "92aa2697-481b-450c-857d-b690d972b50d"
 								}
 							]
 						}
