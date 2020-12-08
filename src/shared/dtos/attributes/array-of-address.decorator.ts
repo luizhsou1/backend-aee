@@ -2,7 +2,7 @@ import { applyDecorators } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer/decorators';
 import { IsArray, ValidateNested } from 'class-validator';
-import { Address } from '../../../modules/old/adresses/address.entity';
+import { Address } from '../../entities/address.entity';
 
 export function IsArrayOfAddress(required = true, insert = true) {
   return applyDecorators(
