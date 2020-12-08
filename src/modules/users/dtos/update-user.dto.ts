@@ -1,14 +1,23 @@
-import { UserRole } from '../user-roles.enum';
-import { IsUserEmail, IsUserName, IsUserRole } from '../attributes';
-import { IsUserActive } from '../attributes/user-active.decorator';
+import { IsUserEmail, IsUserName } from '../attributes';
+import { IsArrayOfPhone } from '../../../shared/dtos/attributes/array-of-phones.decorator';
+import { Phone } from '../../phones/phone.entity';
+import { IsObjectWithId } from '../../../shared/custom-decorators/is-object-with-id';
+import { School } from '../../schools/school.entity';
+import { Teacher } from '../../teachers/teacher.entity';
 
 export class UpdateUserDto {
-  @IsUserEmail(false)
+  @IsUserEmail()
   email: string;
 
-  @IsUserName(false)
+  @IsUserName()
   name: string;
 
-  @IsUserActive(false)
-  active: boolean;
+  @IsArrayOfPhone(false, false)
+  phones: Phone[];
+
+  @IsObjectWithId('sourceSchool', false)
+  sourceSchool: School;
+
+  @IsObjectWithId('teacher', false)
+  teacher: Teacher;
 }

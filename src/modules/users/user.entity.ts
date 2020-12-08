@@ -8,11 +8,13 @@ import {
   UpdateDateColumn,
   OneToOne,
   ManyToOne,
+  OneToMany,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { UserRole } from './user-roles.enum';
 import { School } from '../schools/school.entity';
 import { Teacher } from '../teachers/teacher.entity';
+import { Phone } from '../phones/phone.entity';
 
 @Entity()
 @Unique(['email'])
@@ -41,10 +43,13 @@ export class User extends BaseEntity {
   @Column({ nullable: true, length: 64 })
   recoverToken: string;
 
-  @ManyToOne((type) => School, (school) => school.user)
+  @OneToMany((type) => Phone, (phone) => phone.user, { cascade: true, eager: true })
+  phones: Phone[];
+
+  @ManyToOne((type) => School, (school) => school.user, { eager: true })
   sourceSchool: School;
 
-  @OneToOne((type) => Teacher, (teacher) => teacher.user)
+  @OneToOne((type) => Teacher, (teacher) => teacher.user, { cascade: true, eager: true })
   teacher: Teacher;
 
   @CreateDateColumn()

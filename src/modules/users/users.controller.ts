@@ -37,6 +37,18 @@ export class UsersController {
     };
   }
 
+  @Post('teacher')
+  @Auth(UserRole.ADMIN, UserRole.SUPERVISOR)
+  async createTeacherUser(
+    @Body(ValidationPipe) createUserDto: CreateUserDto,
+  ): Promise<ReturnUserDto> {
+    const user = await this.usersService.createTeacherUser(createUserDto);
+    return {
+      user,
+      message: 'Professor cadastrado com sucesso',
+    };
+  }
+
   @Get(':id')
   @Auth(UserRole.ADMIN, UserRole.SUPERVISOR)
   async findUserById(@Param('id') id: string): Promise<ReturnUserDto> {

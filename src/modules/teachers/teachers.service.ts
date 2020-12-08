@@ -13,18 +13,9 @@ export class TeachersService {
   async createTeacher(createTeacherDto: CreateTeacherDto): Promise<Teacher> {
     const teacher = new Teacher();
     teacher.name = createTeacherDto.name;
-    teacher.email = createTeacherDto.email;
-    teacher.school = createTeacherDto.school;
     teacher.shiftsAee = createTeacherDto.shiftsAee;
     teacher.occupationArea = createTeacherDto.occupationArea;
     teacher.supportTeacher = createTeacherDto.supportTeacher;
-
-    // Para sempre criar um novo
-    createTeacherDto.phones = createTeacherDto.phones.map((phone) => {
-      delete phone.id;
-      return phone;
-    });
-    teacher.phones = createTeacherDto.phones;
     return await this.teacherRepo.save(teacher);
   }
 
@@ -40,12 +31,9 @@ export class TeachersService {
     try {
       const teacher = await this.findTeacherById(id);
       teacher.name = updateTeacherDto.name;
-      teacher.email = updateTeacherDto.email;
-      teacher.school = updateTeacherDto.school;
       teacher.shiftsAee = updateTeacherDto.shiftsAee;
       teacher.occupationArea = updateTeacherDto.occupationArea;
       teacher.supportTeacher = updateTeacherDto.supportTeacher;
-      teacher.phones = updateTeacherDto.phones;
 
       return await this.teacherRepo.save(teacher);
     } catch (error) {

@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { handleErrors } from 'src/shared/utils/errors-helper';
 import { CreateUserDto } from './dtos/create-user.dto';
@@ -16,6 +16,7 @@ export class UsersService {
   ) { }
 
   async createAdminUser(createUserDto: CreateUserDto): Promise<User> {
+    delete createUserDto.sourceSchool;
     if (createUserDto.password !== createUserDto.passwordConfirmation) {
       throw new UnprocessableEntityException('As senhas não conferem');
     } else {
@@ -24,10 +25,23 @@ export class UsersService {
   }
 
   async createSupervisorUser(createUserDto: CreateUserDto): Promise<User> {
+    delete createUserDto.teacher;
     if (createUserDto.password !== createUserDto.passwordConfirmation) {
       throw new UnprocessableEntityException('As senhas não conferem');
+    } else if (!createUserDto.sourceSchool) {
+      throw new ConflictException('Informe a escola de origem do supervisor');
     } else {
       return await this.userRepo.createUser(createUserDto, UserRole.SUPERVISOR);
+    }
+  }
+
+  async createTeacherUser(createUserDto: CreateUserDto): Promise<User> {
+    if (createUserDto.password !== createUserDto.passwordConfirmation) {
+      throw new UnprocessableEntityException('As senhas não conferem');
+    } else if (!createUserDto.sourceSchool) {
+      throw new ConflictException('Informe a escola de origem do professor');
+    } else {
+      return await this.userRepo.createUser(createUserDto, UserRole.TEACHER);
     }
   }
 

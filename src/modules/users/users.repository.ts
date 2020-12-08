@@ -15,6 +15,10 @@ export class UserRepo extends Repository<User> {
   ): Promise<{ users: User[]; total: number }> {
     const { search, email, name, active, role } = queryDto;
     const query = createQueryPaginationTypeorm(User, 'u', queryDto) as SelectQueryBuilder<User>;
+    query
+      .leftJoinAndSelect('u.phones', 'p')
+      .leftJoinAndSelect('u.sourceSchool', 's')
+      .leftJoinAndSelect('u.teacher', 't');
 
     query.where('u.active = :active', {
       active: (active === '' || active === null || active === undefined || active === 'true') ? 'true' : 'false',
@@ -45,13 +49,16 @@ export class UserRepo extends Repository<User> {
   }
 
   async createUser(createUserDto: CreateUserDto, role: UserRole): Promise<User> {
-    const { email, name, password } = createUserDto;
+    const { email, name, password, phones, sourceSchool, teacher } = createUserDto;
 
     const user = this.create();
     user.email = email;
     user.name = name;
     user.salt = await bcrypt.genSalt();
     user.password = await this.hashPassword(password, user.salt);
+    user.phones = phones;
+    user.sourceSchool = sourceSchool;
+    user.teacher = teacher;
     user.role = role;
 
     try {

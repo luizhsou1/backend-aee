@@ -22,13 +22,6 @@ export class Teacher extends BaseEntity {
   @Column({ length: 100 })
   name: string;
 
-  @Column({ length: 100 })
-  email: string;
-
-  @OneToOne(() => School, { eager: true })
-  @JoinColumn()
-  school: School;
-
   @Column({
     type: 'enum',
     enum: TeacherShiftAee,
@@ -42,10 +35,7 @@ export class Teacher extends BaseEntity {
   @Column({ length: 100 })
   occupationArea: string;
 
-  @OneToMany((type) => Phone, (phone) => phone.school, { cascade: true, eager: true })
-  phones: Phone[];
-
-  @OneToOne(() => User, (user) => user.teacher, { cascade: true, eager: true })
+  @OneToOne(() => User, (user) => user.teacher, { onDelete: 'CASCADE' })
   @JoinColumn()
   user: User;
 

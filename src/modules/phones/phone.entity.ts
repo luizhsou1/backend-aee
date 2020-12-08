@@ -8,7 +8,7 @@ import {
   ManyToOne,
 } from 'typeorm';
 import { School } from '../schools/school.entity';
-import { Teacher } from '../teachers/teacher.entity';
+import { User } from '../users/user.entity';
 
 @Entity()
 export class Phone extends BaseEntity {
@@ -24,8 +24,8 @@ export class Phone extends BaseEntity {
   @ManyToOne((type) => School, (school) => school.phones, { onDelete: 'CASCADE' })
   school: School;
 
-  @ManyToOne((type) => Teacher, (teacher) => teacher.phones)
-  teacher: Teacher;
+  @ManyToOne((type) => User, (user) => user.phones, { onDelete: 'CASCADE' })
+  user: User;
 
   @CreateDateColumn()
   createdAt: Date;
