@@ -53,13 +53,21 @@ export class UsersService {
     return user;
   }
 
-  async updateUser(updateUserDto: UpdateUserDto, id: string): Promise<User> {
-    try {
-      await this.userRepo.update(id, updateUserDto);
-      return await this.findUserById(id);
-    } catch (error) {
-      handleErrors(error, 'Erro ao atualizar usuário');
-    }
+  async updateAdminUser(updateUserDto: UpdateUserDto, id: string): Promise<User> {
+    delete updateUserDto.sourceSchool;
+    await this.userRepo.updateUser(id, updateUserDto);
+    return await this.findUserById(id);
+  }
+
+  async updateSupervisorUser(updateUserDto: UpdateUserDto, id: string): Promise<User> {
+    delete updateUserDto.teacher;
+    await this.userRepo.updateUser(id, updateUserDto);
+    return await this.findUserById(id);
+  }
+
+  async updateTeacherUser(updateUserDto: UpdateUserDto, id: string): Promise<User> {
+    await this.userRepo.updateUser(id, updateUserDto);
+    return await this.findUserById(id);
   }
 
   async deleteUser(userId: string) {

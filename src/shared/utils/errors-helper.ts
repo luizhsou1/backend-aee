@@ -1,4 +1,4 @@
-import { ConflictException, InternalServerErrorException } from '@nestjs/common';
+import { ConflictException, HttpException, InternalServerErrorException } from '@nestjs/common';
 
 const customUniqueErrors = (constraint: string): string => {
   switch (constraint) {
@@ -11,11 +11,15 @@ const customUniqueErrors = (constraint: string): string => {
 };
 
 export const handleErrors = (error: any, defaultError: string = 'Erro ao efetuar operação'): Error => {
-  const { constraint } = error;
-  const customError = customUniqueErrors(constraint);
-  if (customError) {
-    throw new ConflictException(customError);
+  if (error instanceof HttpException) {
+    throw error;
   } else {
-    throw new InternalServerErrorException(defaultError);
+    const { constraint } = error;
+    const customError = customUniqueErrors(constraint);
+    if (customError) {
+      throw new ConflictException(customError);
+    } else {
+      throw new InternalServerErrorException(defaultError);
+    }
   }
 };

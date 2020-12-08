@@ -59,13 +59,39 @@ export class UsersController {
     };
   }
 
-  @Patch(':id')
-  @Auth(UserRole.ADMIN, UserRole.SUPERVISOR)
-  async updateUser(
+  @Patch('admin/:id')
+  @Auth(UserRole.ADMIN)
+  async updateAdminUser(
     @Body(ValidationPipe) updateUserDto: UpdateUserDto,
     @Param('id') id: string,
   ): Promise<ReturnUserDto> {
-    const user = await this.usersService.updateUser(updateUserDto, id);
+    const user = await this.usersService.updateAdminUser(updateUserDto, id);
+    return {
+      user,
+      message: 'Administrador alterado com sucesso',
+    };
+  }
+
+  @Patch('supervisor/:id')
+  @Auth(UserRole.ADMIN, UserRole.SUPERVISOR)
+  async updateSupervisorUser(
+    @Body(ValidationPipe) updateUserDto: UpdateUserDto,
+    @Param('id') id: string,
+  ): Promise<ReturnUserDto> {
+    const user = await this.usersService.updateSupervisorUser(updateUserDto, id);
+    return {
+      user,
+      message: 'Supervisor alterado com sucesso',
+    };
+  }
+
+  @Patch('teacher/:id')
+  @Auth(UserRole.ADMIN, UserRole.SUPERVISOR)
+  async updateTeacherUser(
+    @Body(ValidationPipe) updateUserDto: UpdateUserDto,
+    @Param('id') id: string,
+  ): Promise<ReturnUserDto> {
+    const user = await this.usersService.updateTeacherUser(updateUserDto, id);
     return {
       user,
       message: 'Usuário alterado com sucesso',

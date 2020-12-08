@@ -3,10 +3,12 @@ import * as bcrypt from 'bcrypt';
 import { handleErrors } from 'src/shared/utils/errors-helper';
 import { CredentialsDto } from 'src/modules/auth/dtos/credentials.dto';
 import { createQueryPaginationTypeorm } from 'src/shared/utils/query-pagination-typeorm';
+import { ConflictException } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { User } from './user.entity';
 import { FindUsersQueryDto } from './dtos/find-users-query.dto';
 import { UserRole } from './user-roles.enum';
+import { UpdateUserDto } from './dtos/update-user.dto';
 
 @EntityRepository(User)
 export class UserRepo extends Repository<User> {
@@ -62,6 +64,37 @@ export class UserRepo extends Repository<User> {
     user.role = role;
 
     try {
+      await user.save();
+      delete user.salt;
+      delete user.password;
+      return user;
+    } catch (error) {
+      handleErrors(error, 'Erro ao salvar usuário');
+    }
+  }
+
+  /**
+   * @throws ConflictException (Caso não encontre o usuário)
+   */
+  async findUserByIdOrException(id: string): Promise<User> {
+    const user = await this.findOne(id);
+
+    if (!user) throw new ConflictException('Usuário não encontrado');
+
+    return user;
+  }
+
+  async updateUser(id: string, updateUser: UpdateUserDto): Promise<User> {
+    const { email, name, phones, sourceSchool, teacher } = updateUser;
+
+    try {
+      const user = await this.findUserByIdOrException(id);
+      user.email = email;
+      user.name = name;
+      user.phones = phones;
+      user.sourceSchool = sourceSchool;
+      user.teacher = teacher;
+
       await user.save();
       delete user.salt;
       delete user.password;
