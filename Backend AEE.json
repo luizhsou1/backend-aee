@@ -1,0 +1,43 @@
+// Escolas
+
+{
+  "name": "Escola Estadual Marechal Castelo Branco",
+  "hasAee": true,
+  "addresses": [{
+      "description": "",
+      "cep": "38413063",
+      "city": "Uberlândia",
+      "uf": "MG",
+      "neighborhood": "Jaraguá",
+      "street": "Avenida Enoy Guimarães De Souza",
+      "addressNumber": 780,
+      "complement": "Próximo ao Quartel"
+  }],
+  "phones": [
+      {
+          "description": "Telefone",
+          "phoneNumber": "3432382437"
+      }
+  ]
+}
+
+{
+    "name": "Escola Estadual Ângela Teixeira da Silva",
+    "hasAee": false,
+    "addresses": [{
+        "description": "",
+        "cep": "38400420",
+        "city": "Uberlândia",
+        "uf": "MG",
+        "neighborhood": "Daniel Fonseca",
+        "street": "Rua Lambarí",
+        "addressNumber": 385,
+        "complement": ""
+    }],
+    "phones": [
+        {
+            "description": "Telefone",
+            "phoneNumber": "3432369597"
+        }
+    ]
+  }

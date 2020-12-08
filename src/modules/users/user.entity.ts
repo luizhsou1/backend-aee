@@ -6,8 +6,8 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
   OneToOne,
+  ManyToOne,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { UserRole } from './user-roles.enum';
@@ -41,7 +41,7 @@ export class User extends BaseEntity {
   @Column({ nullable: true, length: 64 })
   recoverToken: string;
 
-  @OneToMany((type) => School, (school) => school.user)
+  @ManyToOne((type) => School, (school) => school.user)
   sourceSchool: School;
 
   @OneToOne((type) => Teacher, (teacher) => teacher.user)

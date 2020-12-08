@@ -21,7 +21,7 @@ export class Phone extends BaseEntity {
   @Column({ length: 20 })
   phoneNumber: string;
 
-  @ManyToOne((type) => School, (school) => school.phones)
+  @ManyToOne((type) => School, (school) => school.phones, { onDelete: 'CASCADE' })
   school: School;
 
   @ManyToOne((type) => Teacher, (teacher) => teacher.phones)

@@ -1,4 +1,4 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { School } from '../schools/school.entity';
 
 @Entity()
@@ -30,7 +30,8 @@ export class Address extends BaseEntity {
   @Column({ length: 100 })
   complement: string;
 
-  @OneToOne((type) => School, (school) => school.address)
+  @OneToOne((type) => School, (school) => school.address, { onDelete: 'CASCADE' })
+  @JoinColumn()
   school: School;
 
   @CreateDateColumn()

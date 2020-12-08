@@ -7,8 +7,6 @@ import {
   UpdateDateColumn,
   OneToMany,
   OneToOne,
-  JoinColumn,
-  ManyToOne,
 } from 'typeorm';
 import { Address } from '../adresses/address.entity';
 import { Phone } from '../phones/phone.entity';
@@ -25,14 +23,13 @@ export class School extends BaseEntity {
   @Column({ default: true, comment: 'Possui AEE' })
   hasAee: boolean;
 
-  @OneToOne(() => Address, (address) => address.school, { cascade: true, eager: true })
-  @JoinColumn()
+  @OneToOne(() => Address, (address) => address.school, { eager: true, cascade: true })
   address: Address;
 
-  @OneToMany((type) => Phone, (phone) => phone.school, { cascade: true, eager: true })
+  @OneToMany((type) => Phone, (phone) => phone.school, { eager: true, cascade: true })
   phones: Phone[];
 
-  @ManyToOne((type) => User, (user) => user.sourceSchool)
+  @OneToMany((type) => User, (user) => user.sourceSchool)
   user: User;
 
   @CreateDateColumn()

@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { handleErrors } from 'src/shared/utils/errors-helper';
+import { Address } from '../adresses/address.entity';
 import { CreateSchoolDto } from './dtos/create-school.dto';
 import { FindSchoolsQueryDto } from './dtos/find-schools-query.dto';
 import { UpdateSchoolDto } from './dtos/update-school.dto';
@@ -18,7 +19,7 @@ export class SchoolsService {
     const school = new School();
     school.name = createSchoolDto.name;
     school.hasAee = createSchoolDto.hasAee;
-    school.address = createSchoolDto.address;
+    school.address = createSchoolDto.address as Address;
 
     // Para sempre criar um novo
     createSchoolDto.phones = createSchoolDto.phones.map((phone) => {

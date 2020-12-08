@@ -10,7 +10,8 @@ export class SchoolRepo extends Repository<School> {
   ): Promise<{ schools: School[]; total: number }> {
     const { name, hasAee } = queryDto;
     const query = createQueryPaginationTypeorm(School, 's', queryDto) as SelectQueryBuilder<School>;
-    query.leftJoinAndSelect('s.addresses', 'a')
+    query.leftJoinAndSelect('s.address', 'a')
+      .leftJoinAndSelect('s.phones', 'p')
       .where('1 = 1');
 
     if (hasAee) {
@@ -18,7 +19,7 @@ export class SchoolRepo extends Repository<School> {
     }
 
     if (name) {
-      query.andWhere('s.name ILIKE :name', { name: `%${name}%` });
+      query.andWhere('unaccent(s.name) ILIKE unaccent(:name)', { name: `%${name}%` });
     }
 
     const [schools, total] = await query.getManyAndCount();
