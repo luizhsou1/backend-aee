@@ -7,8 +7,10 @@ import {
   UpdateDateColumn,
   OneToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { Shift } from '../../shared/enums/shift.enum';
+import { Student } from '../students/student.entity';
 import { User } from './user.entity';
 
 @Entity()
@@ -35,6 +37,9 @@ export class Teacher extends BaseEntity {
   @OneToOne(() => User, (user) => user.teacher, { onDelete: 'CASCADE' })
   @JoinColumn()
   user: User;
+
+  @OneToMany((type) => Student, (student) => student.supportTeacher)
+  students: Student[];
 
   @CreateDateColumn()
   createdAt: Date;

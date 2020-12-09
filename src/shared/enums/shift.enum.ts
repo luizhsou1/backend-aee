@@ -1,4 +1,4 @@
 export enum Shift {
-  MORNING = 'MORNING',
-  AFTERNOON = 'AFTERNOON',
+  MORNING = 'MORNING', // Manhã
+  AFTERNOON = 'AFTERNOON', // Tarde
 }

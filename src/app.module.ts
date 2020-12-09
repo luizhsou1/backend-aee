@@ -15,6 +15,7 @@ import appConfig from './core/configs/app.config';
 import typeormConfig from './core/configs/typeorm.config';
 import mailerConfig from './core/configs/mailer.config';
 import { winstonConfig } from './core/configs/winston.config';
+import { StudentsModule } from './modules/students/students.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -34,6 +35,7 @@ import { winstonConfig } from './core/configs/winston.config';
     AuthModule,
     SchoolsModule,
     DeficienciesModule,
+    StudentsModule,
   ],
   controllers: [AppController],
   providers: [

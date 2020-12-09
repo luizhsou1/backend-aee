@@ -21,7 +21,7 @@ export class DeficienciesController {
     const deficiency = await this.deficienciesService.createDeficiency(createDeficiencyDto);
     return {
       deficiency,
-      message: 'Endereço cadastrado com sucesso',
+      message: 'Deficiência cadastrada com sucesso',
     };
   }
 
@@ -31,7 +31,7 @@ export class DeficienciesController {
     const deficiency = await this.deficienciesService.findDeficiencyById(id);
     return {
       deficiency,
-      message: 'Endereço encontrado',
+      message: 'Deficiência encontrada',
     };
   }
 
@@ -44,7 +44,7 @@ export class DeficienciesController {
     const deficiency = await this.deficienciesService.updateDeficiency(updateDeficiencyDto, id);
     return {
       deficiency,
-      message: 'Endereço alterado com sucesso',
+      message: 'Deficiência alterada com sucesso',
     };
   }
 
@@ -53,7 +53,7 @@ export class DeficienciesController {
   async deleteDeficiency(@Param('id') id: string) {
     await this.deficienciesService.deleteDeficiency(id);
     return {
-      message: 'Endereço removido com sucesso',
+      message: 'Deficiência removida com sucesso',
     };
   }
 
@@ -63,7 +63,7 @@ export class DeficienciesController {
     const found = await this.deficienciesService.findDeficiencies(query);
     return {
       ...found,
-      message: 'Endereços encontrados',
+      message: 'Deficiências encontradoa',
     };
   }
 }
