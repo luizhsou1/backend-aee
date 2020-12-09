@@ -18,6 +18,7 @@ export class DeficienciesService {
     const deficiency = new Deficiency();
 
     deficiency.name = createDeficiencyDto.name;
+    deficiency.description = createDeficiencyDto.description;
 
     return await this.deficienciesRepo.save(deficiency);
   }

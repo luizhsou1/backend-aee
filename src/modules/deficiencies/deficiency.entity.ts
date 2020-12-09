@@ -8,7 +8,7 @@ export class Deficiency extends BaseEntity {
   @Column({ length: 100 })
   name: string;
 
-  @Column({ length: 1000 })
+  @Column({ length: 1000, nullable: true })
   description: string;
 
   @CreateDateColumn()

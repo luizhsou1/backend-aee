@@ -12,7 +12,7 @@ export class DeficienciesRepo extends Repository<Deficiency> {
     const query = createQueryPaginationTypeorm(Deficiency, 'd', queryDto) as SelectQueryBuilder<Deficiency>;
 
     if (name) {
-      query.where('a.name ILIKE :name', { name: `%${name}%` });
+      query.where('unaccent(d.name) ILIKE unaccent(:name)', { name: `%${name}%` });
     }
 
     const [deficiencies, total] = await query.getManyAndCount();

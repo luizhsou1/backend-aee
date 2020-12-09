@@ -37,7 +37,7 @@ export class UserRepo extends Repository<User> {
       }
 
       if (name) {
-        query.andWhere('u.name ILIKE :name', { name: `%${name}%` });
+        query.andWhere('unaccent(u.name) ILIKE unaccent(:name)', { name: `%${name}%` });
       }
 
       if (role) {
