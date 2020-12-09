@@ -90,7 +90,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"luiz@mail.com\",\n    \"password\": \"123456\"\n}",
+							"raw": "{\n    \"email\": \"luizhsou1@gmail.com\",\n    \"password\": \"123456\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -843,7 +843,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "4512d9a1-b65e-4af4-a21a-5f33c86acf7b",
+								"id": "7ec21c94-0b21-4e91-886e-44f14eff9fb0",
 								"exec": [
 									""
 								],
@@ -897,7 +897,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "cb841d1d-9f11-4845-813b-894a6bb4d37d",
+								"id": "b67a1709-8548-46ee-af90-26a4bd711046",
 								"exec": [
 									""
 								],
@@ -964,7 +964,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f1fbb9ec-d7e5-4f4c-9046-7242134c607e",
+								"id": "822d8f54-24d7-41f4-acc2-cdf40ad74b92",
 								"exec": [
 									""
 								],
@@ -1016,7 +1016,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c8ef6160-76cf-4353-a7a2-b49b6dacafa4",
+								"id": "803f3f44-10b4-4a17-a7d0-0f81f4d8228d",
 								"exec": [
 									""
 								],
@@ -1045,7 +1045,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"name\": \"Escola Estadual Ângela Teixeira da Souza\",\n        \"hasAee\": true,\n        \"address\": {\n            \"id\": \"8f1d165f-9d92-44a3-9767-c6e54d3d47f8\",\n            \"description\": \"\",\n            \"cep\": \"38400420\",\n            \"city\": \"Uberlândia\",\n            \"uf\": \"MG\",\n            \"neighborhood\": \"Daniel Fonseca\",\n            \"street\": \"Rua Lambarí da Silva\",\n            \"addressNumber\": 385,\n            \"complement\": \"\",\n            \"createdAt\": \"2020-12-08T05:42:07.186Z\",\n            \"updatedAt\": \"2020-12-08T05:42:07.186Z\"\n        },\n        \"phones\": [\n            {\n                \"id\": \"b9bf53bf-e057-4e24-8a9b-9e3a112f9573\",\n                \"description\": \"Telefone\",\n                \"phoneNumber\": \"3432369598\",\n                \"createdAt\": \"2020-12-08T05:42:07.186Z\",\n                \"updatedAt\": \"2020-12-08T05:42:07.186Z\"\n            },\n            {\n                \"id\": \"ac2bcee7-85ca-4a7f-a6fb-1e050427a426\",\n                \"description\": \"Celular\",\n                \"phoneNumber\": \"9999999998\"\n            }\n        ]\n    }",
+							"raw": "{\n        \"name\": \"Escola Estadual Ângela Teixeira da Souza\",\n        \"hasAee\": true,\n        \"address\": {\n            \"id\": \"79e4b552-1d87-4234-88fe-6230bc96723e\",\n            \"description\": \"gbfsdhgtrgtre\",\n            \"cep\": \"384004fr20\",\n            \"city\": \"Uberlândia fedfds\",\n            \"uf\": \"MGrfewr\",\n            \"neighborhood\": \"Daniel Fonseca vgedfr\",\n            \"street\": \"Rua Lambarí da Silva rfsda\",\n            \"addressNumber\": 123,\n            \"complement\": \"dfserws\"\n        },\n        \"phones\": [\n            {\n                \"id\": \"cc5e367d-54f6-4f1f-9e7c-c68ff7955d7a\",\n                \"description\": \"Telefonebvde\",\n                \"phoneNumber\": \"3432369598vfdf\"\n            },\n            {\n                \"description\": \"Celularfdf\",\n                \"phoneNumber\": \"9999999998fs\"\n            }\n        ]\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1064,7 +1064,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "ce5c446b-7666-4862-aad4-3dcddd4ba8de"
+									"value": "dab122a1-0526-47a4-95b3-dd064e17c176"
 								}
 							]
 						}
@@ -1077,7 +1077,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a51607ec-5b69-4922-9f5b-1fbd75f35bca",
+								"id": "e5a9e2eb-cb60-4aa8-b415-1607604f095e",
 								"exec": [
 									""
 								],
@@ -1117,6 +1117,294 @@
 								{
 									"key": "id",
 									"value": "92aa2697-481b-450c-857d-b690d972b50d"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Deficiencies",
+			"item": [
+				{
+					"name": "Create Deficiency",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4512d9a1-b65e-4af4-a21a-5f33c86acf7b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Síndrome de Tourette 2\",\n    \"description\": \"Alguma descrição 2\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/deficiencies",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"deficiencies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Deficiencies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cb841d1d-9f11-4845-813b-894a6bb4d37d",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/deficiencies?name=Sindrome ",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"deficiencies"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Sindrome "
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Deficiency by Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f1fbb9ec-d7e5-4f4c-9046-7242134c607e",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/deficiencies/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"deficiencies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "254fc45d-ba78-492f-8ad4-02f329842b0d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Deficiency",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c8ef6160-76cf-4353-a7a2-b49b6dacafa4",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Síndrome de Tourette 2 frdwfewqrfrwqe\",\n    \"description\": \"Alguma descrição 2 dfsfas\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/deficiencies/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"deficiencies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "254fc45d-ba78-492f-8ad4-02f329842b0d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Decifiency",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a51607ec-5b69-4922-9f5b-1fbd75f35bca",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/deficiencies/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"deficiencies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "254fc45d-ba78-492f-8ad4-02f329842b0d"
 								}
 							]
 						}
