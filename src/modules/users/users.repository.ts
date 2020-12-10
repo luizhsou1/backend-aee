@@ -118,6 +118,7 @@ export class UserRepo extends Repository<User> {
     const user = await this.createQueryBuilder('u')
       .addSelect('u.password')
       .addSelect('u.salt')
+      .leftJoinAndSelect('u.sourceSchool', 's')
       .where('u.active = :active', { active: true })
       .andWhere('u.email = :email', { email })
       .getOne();
