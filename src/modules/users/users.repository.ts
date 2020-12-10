@@ -10,6 +10,7 @@ import { FindUsersQueryDto } from './dtos/find-users-query.dto';
 import { UserRole } from './user-roles.enum';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { School } from '../schools/school.entity';
+import { Phone } from '../../shared/entities/phone.entity';
 
 @EntityRepository(User)
 export class UserRepo extends Repository<User> {
@@ -64,7 +65,14 @@ export class UserRepo extends Repository<User> {
     user.name = name;
     user.salt = await bcrypt.genSalt();
     user.password = await this.hashPassword(password, user.salt);
+
+    createUserDto.phones = createUserDto.phones.map((phone) => {
+      Phone.validatePhoneNumber(phone.phoneNumber);
+      delete phone.id;
+      return phone;
+    });
     user.phones = phones;
+
     user.sourceSchool = schoolId ? { id: schoolId } as School : undefined;
     user.teacher = teacher;
     user.role = role;
@@ -90,13 +98,18 @@ export class UserRepo extends Repository<User> {
     return user;
   }
 
-  async updateUser(id: string, updateUser: UpdateUserDto): Promise<User> {
-    const { email, name, phones, teacher } = updateUser;
+  async updateUser(id: string, updateUserDto: UpdateUserDto): Promise<User> {
+    const { email, name, phones, teacher } = updateUserDto;
 
     try {
       const user = await this.findUserByIdOrException(id);
       user.email = email;
       user.name = name;
+
+      updateUserDto.phones = updateUserDto.phones.map((phone) => {
+        Phone.validatePhoneNumber(phone.phoneNumber);
+        return phone;
+      });
       user.phones = phones;
       user.teacher = teacher;
 
