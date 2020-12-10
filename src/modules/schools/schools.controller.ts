@@ -6,6 +6,7 @@ import { CreateSchoolDto } from './dtos/create-school.dto';
 import { FindSchoolsQueryDto } from './dtos/find-schools-query.dto';
 import { ReturnSchoolDto } from './dtos/return-school.dto';
 import { UpdateSchoolDto } from './dtos/update-school.dto';
+import { School } from './school.entity';
 import { SchoolsService } from './schools.service';
 
 @ApiTags('schools')
@@ -27,12 +28,8 @@ export class SchoolsController {
 
   @Get(':id')
   @Auth(UserRole.ADMIN)
-  async findSchoolById(@Param('id') id: string): Promise<ReturnSchoolDto> {
-    const school = await this.schoolsService.findSchoolById(id);
-    return {
-      school,
-      message: 'Escola encontrada',
-    };
+  async findSchoolById(@Param('id') id: string): Promise<School> {
+    return await this.schoolsService.findSchoolById(id);
   }
 
   @Patch(':id')
@@ -60,10 +57,6 @@ export class SchoolsController {
   @Get()
   @Auth(UserRole.ADMIN)
   async findSchools(@Query() query: FindSchoolsQueryDto) {
-    const found = await this.schoolsService.findSchools(query);
-    return {
-      ...found,
-      message: 'Escolas encontradas',
-    };
+    return await this.schoolsService.findSchools(query);
   }
 }

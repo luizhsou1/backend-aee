@@ -6,6 +6,7 @@ import { FindUsersQueryDto } from './dtos/find-users-query.dto';
 import { ReturnUserDto } from './dtos/return-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { UserRole } from './user-roles.enum';
+import { User } from './user.entity';
 import { UsersService } from './users.service';
 
 @ApiTags('users')
@@ -53,12 +54,8 @@ export class UsersController {
 
   @Get(':id')
   @Auth(UserRole.ADMIN, UserRole.SUPERVISOR)
-  async findUserById(@Param('id') id: string): Promise<ReturnUserDto> {
-    const user = await this.usersService.findUserById(id);
-    return {
-      user,
-      message: 'Usuário encontrado',
-    };
+  async findUserById(@Param('id') id: string): Promise<User> {
+    return await this.usersService.findUserById(id);
   }
 
   @Patch('admin/:id')
@@ -115,10 +112,6 @@ export class UsersController {
     @Headers('schoolId') schoolId: string,
     @Query() query: FindUsersQueryDto,
   ) {
-    const found = await this.usersService.findUsers(query, schoolId);
-    return {
-      ...found,
-      message: 'Usuários encontrados',
-    };
+    return await this.usersService.findUsers(query, schoolId);
   }
 }

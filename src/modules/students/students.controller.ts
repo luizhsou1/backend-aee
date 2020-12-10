@@ -6,6 +6,7 @@ import { CreateStudentDto } from './dtos/create-student.dto';
 import { FindStudentsQueryDto } from './dtos/find-students-query.dto';
 import { ReturnStudentDto } from './dtos/return-student.dto';
 import { UpdateStudentDto } from './dtos/update-student.dto';
+import { Student } from './student.entity';
 import { StudentsService } from './students.service';
 
 @ApiTags('students')
@@ -28,12 +29,8 @@ export class StudentsController {
 
   @Get(':id')
   @Auth(UserRole.ADMIN, UserRole.SUPERVISOR, UserRole.TEACHER)
-  async findStudentById(@Param('id') id: string): Promise<ReturnStudentDto> {
-    const student = await this.studentsService.findStudentById(id);
-    return {
-      student,
-      message: 'Aluno encontrado',
-    };
+  async findStudentById(@Param('id') id: string): Promise<Student> {
+    return await this.studentsService.findStudentById(id);
   }
 
   @Patch(':id')
@@ -64,10 +61,6 @@ export class StudentsController {
     @Headers('schoolId') schoolId: string,
     @Query() query: FindStudentsQueryDto,
   ) {
-    const found = await this.studentsService.findStudents(query, schoolId);
-    return {
-      ...found,
-      message: 'Alunos encontrados',
-    };
+    return await this.studentsService.findStudents(query, schoolId);
   }
 }

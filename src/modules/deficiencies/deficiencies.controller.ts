@@ -3,6 +3,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { UserRole } from 'src/modules/users/user-roles.enum';
 import { Auth } from 'src/shared/custom-decorators/auth.decorator';
 import { DeficienciesService } from './deficiencies.service';
+import { Deficiency } from './deficiency.entity';
 import { CreateDeficiencyDto } from './dtos/create-deficiency.dto';
 import { FindDeficienciesQueryDto } from './dtos/find-deficiencies-query.dto';
 import { ReturnDeficiencyDto } from './dtos/return-deficiency.dto';
@@ -27,12 +28,8 @@ export class DeficienciesController {
 
   @Get(':id')
   @Auth(UserRole.ADMIN, UserRole.SUPERVISOR)
-  async findDeficiencyById(@Param('id') id: string): Promise<ReturnDeficiencyDto> {
-    const deficiency = await this.deficienciesService.findDeficiencyById(id);
-    return {
-      deficiency,
-      message: 'Deficiência encontrada',
-    };
+  async findDeficiencyById(@Param('id') id: string): Promise<Deficiency> {
+    return await this.deficienciesService.findDeficiencyById(id);
   }
 
   @Patch(':id')
@@ -60,10 +57,6 @@ export class DeficienciesController {
   @Get()
   @Auth(UserRole.ADMIN, UserRole.SUPERVISOR)
   async findDeficiencies(@Query() query: FindDeficienciesQueryDto) {
-    const found = await this.deficienciesService.findDeficiencies(query);
-    return {
-      ...found,
-      message: 'Deficiências encontradoa',
-    };
+    return await this.deficienciesService.findDeficiencies(query);
   }
 }
