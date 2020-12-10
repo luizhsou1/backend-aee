@@ -1,8 +1,8 @@
 {
-  "name": "backend-special",
+  "name": "backend-aee",
   "version": "0.0.1",
-  "description": "",
-  "author": "Backend do projeto Special",
+  "description": "Backend do projeto AEE",
+  "author": "Luiz Henrique <luizhsou1@gmail.com>",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

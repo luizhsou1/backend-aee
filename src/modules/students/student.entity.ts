@@ -1,4 +1,4 @@
-import { AfterLoad, BaseEntity, Column, CreateDateColumn, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { AfterInsert, AfterLoad, AfterUpdate, BaseEntity, Column, CreateDateColumn, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { differenceInYears } from 'date-fns';
 import { Shift } from '../../shared/enums/shift.enum';
 import { Deficiency } from '../deficiencies/deficiency.entity';
@@ -90,8 +90,10 @@ export class Student extends BaseEntity {
   @UpdateDateColumn()
   updatedAt: Date;
 
+  @AfterInsert()
+  @AfterUpdate()
   @AfterLoad()
-  private afterLoad() {
+  private setAttributes() {
     this.aeeShift = this.regularShift === Shift.MORNING
       ? Shift.AFTERNOON
       : Shift.MORNING;

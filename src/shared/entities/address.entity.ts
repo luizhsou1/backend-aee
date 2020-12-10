@@ -9,7 +9,7 @@ export class Address extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ length: 100, comment: 'Descricao do endereco, ex: Residencial, Comercial' })
+  @Column({ length: 100, nullable: true, comment: 'Descricao do endereco, ex: Residencial, Comercial' })
   description: string;
 
   @Column({ length: 10 })
@@ -62,7 +62,7 @@ export class Address extends BaseEntity {
     }
 
     if ((addressNumber)
-      && ((!isNumberString(addressNumber)) || (addressNumber >= 1 && addressNumber <= 9999))
+      && (addressNumber < 1 && addressNumber > 9999)
     ) {
       throw new UnprocessableEntityException('Informe um número de casa com no máximo 4 dígitos');
     }

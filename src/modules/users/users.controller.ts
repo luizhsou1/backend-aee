@@ -15,7 +15,7 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
   @Post('admin')
-  @Auth(UserRole.ADMIN, UserRole.SUPERVISOR)
+  @Auth(UserRole.ADMIN)
   async createAdminUser(
     @Body(ValidationPipe) createUserDto: CreateUserDto,
   ): Promise<ReturnUserDto> {

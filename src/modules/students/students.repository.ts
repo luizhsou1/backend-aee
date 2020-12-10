@@ -24,7 +24,7 @@ export class StudentRepo extends Repository<Student> {
       .leftJoinAndSelect('s.responsibles', 'r')
       .leftJoinAndSelect('s.documents', 'dd')
       .leftJoinAndSelect('s.address', 'e')
-      .where('s."sourceSchoolId" ILIKE :sourceSchoolId', { sourceSchoolId: schoolId });
+      .where('s."sourceSchoolId" = :sourceSchoolId', { sourceSchoolId: schoolId });
 
     if (name) {
       query.andWhere('unaccent(s.name) ILIKE unaccent(:name)', { name: `%${name}%` });
@@ -42,7 +42,6 @@ export class StudentRepo extends Repository<Student> {
     student.regularRegistration = createStudentDto.regularRegistration;
     student.birthDate = createStudentDto.birthDate;
     student.gender = createStudentDto.gender;
-    student.address = createStudentDto.address;
     student.deficiencies = createStudentDto.deficiencies;
     student.regularShift = createStudentDto.regularShift;
     student.regularClassYear = createStudentDto.regularClassYear;
@@ -52,6 +51,7 @@ export class StudentRepo extends Repository<Student> {
     student.teachers = createStudentDto.teachers;
     student.supportTeacher = createStudentDto.supportTeacher;
     student.extraAeeActivity = createStudentDto.extraAeeActivity;
+    Address.validateAddress(createStudentDto.address);
     student.address = createStudentDto.address;
     student.sourceSchool = { id: schoolId } as School;
 
@@ -100,7 +100,6 @@ export class StudentRepo extends Repository<Student> {
       student.regularRegistration = updateStudentDto.regularRegistration;
       student.birthDate = updateStudentDto.birthDate;
       student.gender = updateStudentDto.gender;
-      student.address = updateStudentDto.address;
       student.deficiencies = updateStudentDto.deficiencies;
       student.regularShift = updateStudentDto.regularShift;
       student.regularClassYear = updateStudentDto.regularClassYear;
