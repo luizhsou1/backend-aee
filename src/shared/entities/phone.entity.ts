@@ -1,3 +1,5 @@
+import { UnprocessableEntityException } from '@nestjs/common';
+import { isNumberString } from 'class-validator';
 import {
   BaseEntity,
   Entity,
@@ -36,4 +38,12 @@ export class Phone extends BaseEntity {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  static validatePhoneNumber(phoneNumber: string) {
+    if ((phoneNumber)
+      && ((!isNumberString(phoneNumber)) || (phoneNumber.length < 10 || phoneNumber.length > 11))
+    ) {
+      throw new UnprocessableEntityException('Telefone deve conter de 10 a 11 números, considerando o DDD');
+    }
+  }
 }

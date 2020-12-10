@@ -1,6 +1,8 @@
 import { ConflictException } from '@nestjs/common';
 import { createQueryPaginationTypeorm } from 'src/shared/utils/query-pagination-typeorm';
 import { EntityRepository, Repository, SelectQueryBuilder } from 'typeorm';
+import { Address } from '../../shared/entities/address.entity';
+import { Phone } from '../../shared/entities/phone.entity';
 import { handleErrors } from '../../shared/utils/errors-helper';
 import { School } from '../schools/school.entity';
 import { CreateStudentDto } from './dtos/create-student.dto';
@@ -54,9 +56,12 @@ export class StudentRepo extends Repository<Student> {
     student.sourceSchool = { id: schoolId } as School;
 
     // Para sempre criar um novo
-    createStudentDto.responsibles = createStudentDto.responsibles.map((responsible) => {
+    createStudentDto.responsibles.forEach((responsible) => {
       delete responsible.id;
-      return responsible;
+      responsible.phones = responsible.phones.map((phone) => {
+        Phone.validatePhoneNumber(phone.phoneNumber);
+        return phone;
+      });
     });
     student.responsibles = createStudentDto.responsibles;
 
@@ -105,7 +110,16 @@ export class StudentRepo extends Repository<Student> {
       student.teachers = updateStudentDto.teachers;
       student.supportTeacher = updateStudentDto.supportTeacher;
       student.extraAeeActivity = updateStudentDto.extraAeeActivity;
+
+      Address.validateAddress(updateStudentDto.address);
       student.address = updateStudentDto.address;
+
+      updateStudentDto.responsibles.forEach((responsible) => {
+        responsible.phones = responsible.phones.map((phone) => {
+          Phone.validatePhoneNumber(phone.phoneNumber);
+          return phone;
+        });
+      });
       student.responsibles = updateStudentDto.responsibles;
       student.documents = updateStudentDto.documents;
 

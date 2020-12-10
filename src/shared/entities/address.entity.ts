@@ -1,3 +1,5 @@
+import { UnprocessableEntityException } from '@nestjs/common';
+import { isNumberString } from 'class-validator';
 import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { School } from '../../modules/schools/school.entity';
 import { Student } from '../../modules/students/student.entity';
@@ -44,4 +46,25 @@ export class Address extends BaseEntity {
 
   @CreateDateColumn()
   updatedAt: Date;
+
+  static validateAddress(address: Address) {
+    const { cep, uf, addressNumber } = address;
+    if ((cep) && ((!isNumberString(cep)) || (cep.length !== 8))) {
+      throw new UnprocessableEntityException('Informe um CEP contendo exatamente 8 números');
+    }
+
+    if ((uf) && (![
+      'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA',
+      'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN',
+      'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'].includes(uf))
+    ) {
+      throw new UnprocessableEntityException('Informe uma UF válida');
+    }
+
+    if ((addressNumber)
+      && ((!isNumberString(addressNumber)) || (addressNumber >= 1 && addressNumber <= 9999))
+    ) {
+      throw new UnprocessableEntityException('Informe um número de casa com no máximo 4 dígitos');
+    }
+  }
 }

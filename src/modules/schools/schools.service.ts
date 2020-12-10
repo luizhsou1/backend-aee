@@ -1,6 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { handleErrors } from 'src/shared/utils/errors-helper';
+import { Address } from '../../shared/entities/address.entity';
+import { Phone } from '../../shared/entities/phone.entity';
 import { CreateSchoolDto } from './dtos/create-school.dto';
 import { FindSchoolsQueryDto } from './dtos/find-schools-query.dto';
 import { UpdateSchoolDto } from './dtos/update-school.dto';
@@ -18,10 +20,13 @@ export class SchoolsService {
     const school = new School();
     school.name = createSchoolDto.name;
     school.hasAee = createSchoolDto.hasAee;
+
+    Address.validateAddress(createSchoolDto.address);
     school.address = createSchoolDto.address;
 
     // Para sempre criar um novo
     createSchoolDto.phones = createSchoolDto.phones.map((phone) => {
+      Phone.validatePhoneNumber(phone.phoneNumber);
       delete phone.id;
       return phone;
     });
@@ -42,7 +47,14 @@ export class SchoolsService {
       const school = await this.findSchoolById(id);
       school.name = updateSchoolDto.name;
       school.hasAee = updateSchoolDto.hasAee;
+
+      Address.validateAddress(updateSchoolDto.address);
       school.address = updateSchoolDto.address;
+
+      updateSchoolDto.phones = updateSchoolDto.phones.map((phone) => {
+        Phone.validatePhoneNumber(phone.phoneNumber);
+        return phone;
+      });
       school.phones = updateSchoolDto.phones;
       return await this.schoolRepo.save(school);
     } catch (error) {
