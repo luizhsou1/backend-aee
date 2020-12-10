@@ -16,10 +16,10 @@ export class Phone extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ length: 100 })
+  @Column({ length: 100, nullable: true })
   description: string;
 
-  @Column({ length: 20 })
+  @Column({ length: 20, nullable: true })
   phoneNumber: string;
 
   @ManyToOne((type) => School, (school) => school.phones, { onDelete: 'CASCADE' })

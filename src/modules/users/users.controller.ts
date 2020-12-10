@@ -1,5 +1,5 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards, ValidationPipe } from '@nestjs/common';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Headers, ValidationPipe } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { Auth } from 'src/shared/custom-decorators/auth.decorator';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { FindUsersQueryDto } from './dtos/find-users-query.dto';
@@ -28,9 +28,10 @@ export class UsersController {
   @Post('supervisor')
   @Auth(UserRole.ADMIN, UserRole.SUPERVISOR)
   async createSupervisorUser(
+    @Headers('schoolId') schoolId: string,
     @Body(ValidationPipe) createUserDto: CreateUserDto,
   ): Promise<ReturnUserDto> {
-    const user = await this.usersService.createSupervisorUser(createUserDto);
+    const user = await this.usersService.createSupervisorUser(createUserDto, schoolId);
     return {
       user,
       message: 'Supervisor cadastrado com sucesso',
@@ -40,9 +41,10 @@ export class UsersController {
   @Post('teacher')
   @Auth(UserRole.ADMIN, UserRole.SUPERVISOR)
   async createTeacherUser(
+    @Headers('schoolId') schoolId: string,
     @Body(ValidationPipe) createUserDto: CreateUserDto,
   ): Promise<ReturnUserDto> {
-    const user = await this.usersService.createTeacherUser(createUserDto);
+    const user = await this.usersService.createTeacherUser(createUserDto, schoolId);
     return {
       user,
       message: 'Professor cadastrado com sucesso',
@@ -65,7 +67,7 @@ export class UsersController {
     @Body(ValidationPipe) updateUserDto: UpdateUserDto,
     @Param('id') id: string,
   ): Promise<ReturnUserDto> {
-    const user = await this.usersService.updateAdminUser(updateUserDto, id);
+    const user = await this.usersService.updateAdminUser(id, updateUserDto);
     return {
       user,
       message: 'Administrador alterado com sucesso',
@@ -78,7 +80,7 @@ export class UsersController {
     @Body(ValidationPipe) updateUserDto: UpdateUserDto,
     @Param('id') id: string,
   ): Promise<ReturnUserDto> {
-    const user = await this.usersService.updateSupervisorUser(updateUserDto, id);
+    const user = await this.usersService.updateSupervisorUser(id, updateUserDto);
     return {
       user,
       message: 'Supervisor alterado com sucesso',
@@ -91,7 +93,7 @@ export class UsersController {
     @Body(ValidationPipe) updateUserDto: UpdateUserDto,
     @Param('id') id: string,
   ): Promise<ReturnUserDto> {
-    const user = await this.usersService.updateTeacherUser(updateUserDto, id);
+    const user = await this.usersService.updateTeacherUser(id, updateUserDto);
     return {
       user,
       message: 'Usuário alterado com sucesso',
@@ -109,8 +111,11 @@ export class UsersController {
 
   @Get()
   @Auth(UserRole.ADMIN, UserRole.SUPERVISOR)
-  async findUsers(@Query() query: FindUsersQueryDto) {
-    const found = await this.usersService.findUsers(query);
+  async findUsers(
+    @Headers('schoolId') schoolId: string,
+    @Query() query: FindUsersQueryDto,
+  ) {
+    const found = await this.usersService.findUsers(query, schoolId);
     return {
       ...found,
       message: 'Usuários encontrados',

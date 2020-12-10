@@ -15,9 +15,6 @@ export class UpdateUserDto {
   @IsArrayOfPhone(false, false)
   phones: Phone[];
 
-  @IsObjectWithId('sourceSchool', false)
-  sourceSchool: School;
-
   @IsObjectWithId('teacher', false)
   teacher: Teacher;
 }

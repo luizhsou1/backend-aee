@@ -15,7 +15,7 @@ export class Responsible extends BaseEntity {
   @Column({ length: 30 })
   name: string;
 
-  @Column({ type: 'enum', enum: Shift })
+  @Column({ type: 'enum', enum: kinship })
   kinship: kinship;
 
   @ManyToOne((type) => Student, (student) => student.responsibles, { onDelete: 'CASCADE' })

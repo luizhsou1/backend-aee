@@ -16,7 +16,6 @@ export class UsersService {
   ) { }
 
   async createAdminUser(createUserDto: CreateUserDto): Promise<User> {
-    delete createUserDto.sourceSchool;
     if (createUserDto.password !== createUserDto.passwordConfirmation) {
       throw new UnprocessableEntityException('As senhas não conferem');
     } else {
@@ -24,48 +23,49 @@ export class UsersService {
     }
   }
 
-  async createSupervisorUser(createUserDto: CreateUserDto): Promise<User> {
+  async createSupervisorUser(createUserDto: CreateUserDto, schoolId: string): Promise<User> {
     delete createUserDto.teacher;
     if (createUserDto.password !== createUserDto.passwordConfirmation) {
       throw new UnprocessableEntityException('As senhas não conferem');
-    } else if (!createUserDto.sourceSchool) {
+    } else if (!schoolId) {
       throw new ConflictException('Informe a escola de origem do supervisor');
     } else {
-      return await this.userRepo.createUser(createUserDto, UserRole.SUPERVISOR);
+      return await this.userRepo.createUser(createUserDto, UserRole.SUPERVISOR, schoolId);
     }
   }
 
-  async createTeacherUser(createUserDto: CreateUserDto): Promise<User> {
+  async createTeacherUser(createUserDto: CreateUserDto, schoolId: string): Promise<User> {
     if (createUserDto.password !== createUserDto.passwordConfirmation) {
       throw new UnprocessableEntityException('As senhas não conferem');
-    } else if (!createUserDto.sourceSchool) {
+    } else if (!schoolId) {
       throw new ConflictException('Informe a escola de origem do professor');
     } else {
-      return await this.userRepo.createUser(createUserDto, UserRole.TEACHER);
+      return await this.userRepo.createUser(createUserDto, UserRole.TEACHER, schoolId);
     }
   }
 
   async findUserById(userId: string): Promise<User> {
-    const user = await this.userRepo.findOne(userId);
-
-    if (!user) throw new NotFoundException('Usuário não encontrado');
-
-    return user;
+    return await this.userRepo.findUserByIdOrException(userId);
   }
 
-  async updateAdminUser(updateUserDto: UpdateUserDto, id: string): Promise<User> {
-    delete updateUserDto.sourceSchool;
+  async updateAdminUser(id: string, updateUserDto: UpdateUserDto): Promise<User> {
     await this.userRepo.updateUser(id, updateUserDto);
     return await this.findUserById(id);
   }
 
-  async updateSupervisorUser(updateUserDto: UpdateUserDto, id: string): Promise<User> {
+  async updateSupervisorUser(
+    id: string,
+    updateUserDto: UpdateUserDto,
+  ): Promise<User> {
     delete updateUserDto.teacher;
     await this.userRepo.updateUser(id, updateUserDto);
     return await this.findUserById(id);
   }
 
-  async updateTeacherUser(updateUserDto: UpdateUserDto, id: string): Promise<User> {
+  async updateTeacherUser(
+    id: string,
+    updateUserDto: UpdateUserDto,
+  ): Promise<User> {
     await this.userRepo.updateUser(id, updateUserDto);
     return await this.findUserById(id);
   }
@@ -81,8 +81,9 @@ export class UsersService {
 
   async findUsers(
     queryDto: FindUsersQueryDto,
+    schoolId: string,
   ): Promise<{ users: User[]; total: number }> {
-    const users = await this.userRepo.findUsers(queryDto);
+    const users = await this.userRepo.findUsers(queryDto, schoolId);
     return users;
   }
 }

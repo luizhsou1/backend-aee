@@ -92,7 +92,7 @@ export class Student extends BaseEntity {
 
   @AfterLoad()
   private afterLoad() {
-    this.aeeShift = this.regularShift === Shift.AFTERNOON
+    this.aeeShift = this.regularShift === Shift.MORNING
       ? Shift.AFTERNOON
       : Shift.MORNING;
     this.age = differenceInYears(new Date(), new Date(this.birthDate));

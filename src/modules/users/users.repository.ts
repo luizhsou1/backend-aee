@@ -9,11 +9,13 @@ import { User } from './user.entity';
 import { FindUsersQueryDto } from './dtos/find-users-query.dto';
 import { UserRole } from './user-roles.enum';
 import { UpdateUserDto } from './dtos/update-user.dto';
+import { School } from '../schools/school.entity';
 
 @EntityRepository(User)
 export class UserRepo extends Repository<User> {
   async findUsers(
     queryDto: FindUsersQueryDto,
+    schoolId: string,
   ): Promise<{ users: User[]; total: number }> {
     const { search, email, name, active, role } = queryDto;
     const query = createQueryPaginationTypeorm(User, 'u', queryDto) as SelectQueryBuilder<User>;
@@ -25,6 +27,10 @@ export class UserRepo extends Repository<User> {
     query.where('u.active = :active', {
       active: (active === '' || active === null || active === undefined || active === 'true') ? 'true' : 'false',
     });
+
+    if (role !== UserRole.ADMIN) {
+      query.andWhere('u."sourceSchoolId" ILIKE :sourceSchoolId', { sourceSchoolId: schoolId });
+    }
 
     if (search) {
       query.andWhere('(u.email ILIKE :email OR u.name ILIKE :name)', {
@@ -50,8 +56,8 @@ export class UserRepo extends Repository<User> {
     return { users, total };
   }
 
-  async createUser(createUserDto: CreateUserDto, role: UserRole): Promise<User> {
-    const { email, name, password, phones, sourceSchool, teacher } = createUserDto;
+  async createUser(createUserDto: CreateUserDto, role: UserRole, schoolId?: string): Promise<User> {
+    const { email, name, password, phones, teacher } = createUserDto;
 
     const user = this.create();
     user.email = email;
@@ -59,7 +65,7 @@ export class UserRepo extends Repository<User> {
     user.salt = await bcrypt.genSalt();
     user.password = await this.hashPassword(password, user.salt);
     user.phones = phones;
-    user.sourceSchool = sourceSchool;
+    user.sourceSchool = schoolId ? { id: schoolId } as School : undefined;
     user.teacher = teacher;
     user.role = role;
 
@@ -85,14 +91,13 @@ export class UserRepo extends Repository<User> {
   }
 
   async updateUser(id: string, updateUser: UpdateUserDto): Promise<User> {
-    const { email, name, phones, sourceSchool, teacher } = updateUser;
+    const { email, name, phones, teacher } = updateUser;
 
     try {
       const user = await this.findUserByIdOrException(id);
       user.email = email;
       user.name = name;
       user.phones = phones;
-      user.sourceSchool = sourceSchool;
       user.teacher = teacher;
 
       await user.save();

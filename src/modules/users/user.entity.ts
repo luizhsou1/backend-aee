@@ -17,7 +17,7 @@ import { Phone } from '../../shared/entities/phone.entity';
 import { Teacher } from './teacher.entity';
 
 @Entity()
-@Unique(['email'])
+@Unique('uq_user_email_source_school', ['email', 'sourceSchool'])
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;

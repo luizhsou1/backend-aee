@@ -22,6 +22,7 @@ import { IsStudentTeachers } from '../attributes/student-teachers.decorator';
 import { IsStudentExtraAeeActivity } from '../attributes/student-teachers.decorator copy';
 import { ExtraAeeActivity } from '../extra-aee-activity.enum';
 import { Responsible } from '../responsible.entity';
+import { Document } from '../document.entity';
 
 export class CreateStudentDto {
   @IsStudentName()
