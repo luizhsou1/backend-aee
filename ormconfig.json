@@ -1,0 +1,24 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5436,
+  "username": "backend_aee",
+  "password": "123",
+  "database": "backend_aee",
+  "entities": [
+    "src/modules/**/*.entity.{js,ts}`"
+  ],
+  "migrations": [
+    "src/core/migrations/**/*.ts"
+  ],
+  "subscribers": [
+    "src/core/subscriber/**/*.ts"
+  ],
+  "cli": {
+    "migrationsDir": [
+      "src/core/migrations/"
+    ],
+    "entitiesDir": "src/modules/users/",
+    "subscribersDir": "src/core/subscriber"
+  }
+}

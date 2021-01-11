@@ -33,7 +33,7 @@ export class Student extends BaseEntity {
   gender: Gender;
 
   @ManyToMany(() => Deficiency)
-  @JoinTable()
+  @JoinTable({ name: 'student_deficiency' })
   deficiencies: Deficiency[];
 
   @Column({ type: 'enum', enum: Shift })
@@ -57,7 +57,7 @@ export class Student extends BaseEntity {
   urlImage: string;
 
   @ManyToMany(() => Teacher)
-  @JoinTable()
+  @JoinTable({ name: 'student_teacher' })
   teachers: Teacher[];
 
   @ManyToOne((type) => Teacher, (teacher) => teacher.supportTeacher, { eager: true })
