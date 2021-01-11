@@ -30,7 +30,7 @@ export class UserRepo extends Repository<User> {
     });
 
     if (role !== UserRole.ADMIN) {
-      query.andWhere('u."sourceSchoolId" ILIKE :sourceSchoolId', { sourceSchoolId: schoolId });
+      query.andWhere('u."sourceSchoolId" = :sourceSchoolId', { sourceSchoolId: schoolId });
     }
 
     if (search) {
