@@ -38,6 +38,7 @@ export class startModelDb1599939688541 implements MigrationInterface {
     await queryRunner.query('ALTER TABLE "student_deficiency" ADD CONSTRAINT "fk_student_deficiency_defiency" FOREIGN KEY ("deficiencyId") REFERENCES "deficiency"("id") ON DELETE CASCADE ON UPDATE NO ACTION;');
     await queryRunner.query('ALTER TABLE "student_teacher" ADD CONSTRAINT "fk_student_teacher_student" FOREIGN KEY ("studentId") REFERENCES "student"("id") ON DELETE CASCADE ON UPDATE NO ACTION;');
     await queryRunner.query('ALTER TABLE "student_teacher" ADD CONSTRAINT "fk_student_teacher_teacher" FOREIGN KEY ("teacherId") REFERENCES "teacher"("id") ON DELETE CASCADE ON UPDATE NO ACTION;');
+    await queryRunner.query('INSERT INTO public."user" (id, email, name, "role", active, "password", salt, "recoverToken", "createdAt", "updatedAt", "sourceSchoolId") VALUES(\'55881217-84f3-4c14-b912-46a32adf6272\', \'admin@mail.com\', \'Administrador\', \'ADMIN\', true, \'$2b$10$KDbzXVCQPd5O3m/uecUS4uxd7lc0K37kCeQos0ZXnYm.oVgS6PE6a\', \'$2b$10$KDbzXVCQPd5O3m/uecUS4u\', NULL, \'2021-01-11 20:46:38.444\', \'2021-01-11 20:46:38.444\', NULL);');
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
